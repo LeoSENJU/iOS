@@ -12,4 +12,8 @@ class BreakItViewController: UIViewController {
     struct Constant {
         static let NumberOfMaxBricks = 20
     }
+    
+    func abortedFunction () {
+        println("The function to be aborted from the developing process")
+    }
 }
