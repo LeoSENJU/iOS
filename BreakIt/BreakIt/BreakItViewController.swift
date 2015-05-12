@@ -9,4 +9,7 @@
 import UIKit
 
 class BreakItViewController: UIViewController {
+    struct Constant {
+        static let NumberOfMaxBricks = 20
+    }
 }
