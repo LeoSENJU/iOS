@@ -13,6 +13,8 @@
 		2F7EFD731B0250C200C3BAE0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7EFD711B0250C200C3BAE0 /* LaunchScreen.xib */; };
 		2F7EFD7F1B0250C200C3BAE0 /* BreakItTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7EFD7E1B0250C200C3BAE0 /* BreakItTests.swift */; };
 		2F7EFD891B02516F00C3BAE0 /* BreakItViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7EFD881B02516F00C3BAE0 /* BreakItViewController.swift */; };
+		2F7EFD8D1B038EC200C3BAE0 /* BreakItBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7EFD8C1B038EC200C3BAE0 /* BreakItBehavior.swift */; };
+		2F7EFD8F1B038F1000C3BAE0 /* BezierPathsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7EFD8E1B038F1000C3BAE0 /* BezierPathsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		2F7EFD7D1B0250C200C3BAE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F7EFD7E1B0250C200C3BAE0 /* BreakItTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakItTests.swift; sourceTree = "<group>"; };
 		2F7EFD881B02516F00C3BAE0 /* BreakItViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakItViewController.swift; sourceTree = "<group>"; };
+		2F7EFD8C1B038EC200C3BAE0 /* BreakItBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakItBehavior.swift; sourceTree = "<group>"; };
+		2F7EFD8E1B038F1000C3BAE0 /* BezierPathsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierPathsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,8 @@
 			children = (
 				2F7EFD6C1B0250C200C3BAE0 /* Main.storyboard */,
 				2F7EFD881B02516F00C3BAE0 /* BreakItViewController.swift */,
+				2F7EFD8C1B038EC200C3BAE0 /* BreakItBehavior.swift */,
+				2F7EFD8E1B038F1000C3BAE0 /* BezierPathsView.swift */,
 				2F7EFD661B0250C200C3BAE0 /* Supporting Files */,
 			);
 			path = BreakIt;
@@ -212,8 +218,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F7EFD8F1B038F1000C3BAE0 /* BezierPathsView.swift in Sources */,
 				2F7EFD691B0250C200C3BAE0 /* AppDelegate.swift in Sources */,
 				2F7EFD891B02516F00C3BAE0 /* BreakItViewController.swift in Sources */,
+				2F7EFD8D1B038EC200C3BAE0 /* BreakItBehavior.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +419,7 @@
 				2F7EFD841B0250C200C3BAE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2F7EFD851B0250C200C3BAE0 /* Build configuration list for PBXNativeTarget "BreakItTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +428,7 @@
 				2F7EFD871B0250C200C3BAE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
