@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--More-->
+        <!--More View Controller-->
         <scene sceneID="sQE-5T-VKI">
             <objects>
                 <viewController id="28l-WN-yXY" customClass="MoreViewController" customModule="BreakIt" customModuleProvider="target" sceneMemberID="viewController">
@@ -26,7 +26,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="More" id="MxE-4B-JnE"/>
+                    <tabBarItem key="tabBarItem" systemItem="more" id="MxE-4B-JnE"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Te-Mn-ddE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -53,13 +53,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Setting" id="W9f-OF-7oe"/>
+                    <tabBarItem key="tabBarItem" title="Setting" image="setting" id="W9f-OF-7oe"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Rb-Us-Gb4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="519" y="215"/>
         </scene>
-        <!--Break It-->
+        <!--Break It View Controller-->
         <scene sceneID="OY9-YI-GQa">
             <objects>
                 <viewController id="f4y-e8-wxE" customClass="BreakItViewController" customModule="BreakIt" customModuleProvider="target" sceneMemberID="viewController">
@@ -90,7 +90,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Break It" id="Rrk-W9-7ro"/>
+                    <tabBarItem key="tabBarItem" systemItem="featured" id="Rrk-W9-7ro"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f9m-t6-bTB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -117,4 +117,7 @@
             <point key="canvasLocation" x="-307" y="-158"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="setting" width="25" height="25"/>
+    </resources>
 </document>
