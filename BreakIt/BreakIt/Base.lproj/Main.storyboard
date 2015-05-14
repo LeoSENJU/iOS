@@ -30,7 +30,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Te-Mn-ddE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="536" y="1025"/>
+            <point key="canvasLocation" x="530" y="1007"/>
         </scene>
         <!--Setting-->
         <scene sceneID="5tr-QX-Iuc">
@@ -91,6 +91,9 @@
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="featured" id="Rrk-W9-7ro"/>
+                    <connections>
+                        <outlet property="gameView" destination="yFs-Ht-joI" id="i9J-N6-rvc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f9m-t6-bTB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

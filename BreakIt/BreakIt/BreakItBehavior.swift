@@ -8,6 +8,37 @@
 
 import UIKit
 
-class BreakItBehavior: UIDynamicAnimator {
+class BreakItBehavior: UIDynamicBehavior {
     
+    lazy var collider: UICollisionBehavior = {
+        let lazilyCreatedCollider = UICollisionBehavior()
+        lazilyCreatedCollider.translatesReferenceBoundsIntoBoundary = true
+        return lazilyCreatedCollider
+    }()
+    
+    override init() {
+        super.init()
+        addChildBehavior(collider)
+    }
+    
+    func addBrick(path: UIBezierPath, named name:String)
+    {
+        
+    }
+    
+    func removeBrick(name: String)
+    {
+        
+    }
+    
+    func addBehaviorItem(item: UIView)
+    {
+        dynamicAnimator?.referenceView?.addSubview(item)
+        collider.addItem(item)
+    }
+    
+    func removeBehaviorItem(item: UIView)
+    {
+        collider.removeItem(item)
+    }
 }

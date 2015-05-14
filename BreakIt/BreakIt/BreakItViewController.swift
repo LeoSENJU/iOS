@@ -8,10 +8,25 @@
 
 import UIKit
 
-class BreakItViewController: UIViewController {
+class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     
-    struct Constant {
+    @IBOutlet weak var gameView: BezierPathsView!
+    
+    lazy var animator: UIDynamicAnimator = {
+       let lazilyCreatedDynamicAnimator = UIDynamicAnimator(referenceView: self.gameView)
+        lazilyCreatedDynamicAnimator.delegate = self
+        return lazilyCreatedDynamicAnimator
+    }()
+    
+    let breakItBehavior = BreakItBehavior()
+    
+    struct ConstantsForBreakItGame {
         static let NumberOfMaxBricks = 20
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        animator.addBehavior(breakItBehavior)
     }
     
     override func viewDidLayoutSubviews() {
