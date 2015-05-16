@@ -21,7 +21,14 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     let breakItBehavior = BreakItBehavior()
     
     struct ConstantsForBreakItGame {
-        static let NumberOfMaxBricks = 20
+        static let NumberOfMaxBricksColumn = 4
+        static let NumberOfBricksPerRow = 5
+    }
+    
+    var brickSize: CGSize {
+        let brickWidth = gameView.bounds.size.width / CGFloat(ConstantsForBreakItGame.NumberOfBricksPerRow * 2)
+        let brickHeight = gameView.bounds.size.height / CGFloat(ConstantsForBreakItGame.NumberOfMaxBricksColumn * 3)
+        return CGSize(width: brickWidth, height: brickHeight)
     }
     
     override func viewDidLoad() {
@@ -29,6 +36,8 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         animator.addBehavior(breakItBehavior)
     }
     
+    // Set the position of bricks, paddle and ball when game start and restart from pause
+    // For the time being, just implement the start
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
     }
