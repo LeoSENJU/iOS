@@ -58,6 +58,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yFs-Ht-joI" customClass="BezierPathsView" customModule="BreakIt" customModuleProvider="target">
                                 <rect key="frame" x="16" y="20" width="568" height="531"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="qem-h9-NlT" appends="YES" id="tWn-Y8-r0q"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -74,6 +78,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f9m-t6-bTB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="qem-h9-NlT">
+                    <connections>
+                        <action selector="drag:" destination="f4y-e8-wxE" id="NeE-Vj-h8k"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="494" y="-515"/>
         </scene>

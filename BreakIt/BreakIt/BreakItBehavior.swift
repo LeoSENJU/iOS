@@ -19,7 +19,7 @@ class BreakItBehavior: UIDynamicBehavior {
     
     lazy var breakItBehavior: UIDynamicItemBehavior = {
         let lazilyCreatedBreakItBehavior = UIDynamicItemBehavior()
-        lazilyCreatedBreakItBehavior.allowsRotation = true
+        lazilyCreatedBreakItBehavior.allowsRotation = false
         lazilyCreatedBreakItBehavior.elasticity = 1.0
         lazilyCreatedBreakItBehavior.friction = 0.0
         lazilyCreatedBreakItBehavior.resistance = 0.0
@@ -45,14 +45,11 @@ class BreakItBehavior: UIDynamicBehavior {
         removeBehaviorItem(ball)
     }
     
-    func addPaddle(path: UIBezierPath, named name: String)
+    func setPaddle(path: UIBezierPath, named name: String)
     {
-        
-    }
-    
-    func removePaddle(name: String)
-    {
-        
+        collider.removeBoundaryWithIdentifier(name)
+        collider.removeBoundaryWithIdentifier(name)
+        collider.addBoundaryWithIdentifier(name, forPath: path)
     }
     
     func addBrick(path: UIBezierPath, named name:String)

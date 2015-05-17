@@ -13,6 +13,19 @@ class BezierPathsView: UIView {
 
     private var bezierPaths = [String : UIBezierPath]()
     
+    private var paddlePath: UIBezierPath?
+    private var paddleFillColor: UIColor?
+    private var paddleStrokeColor: UIColor?
+    
+    
+    func setPaddle(path: UIBezierPath?, fillColor: UIColor?, strokColor: UIColor?)
+    {
+        paddlePath = path
+        paddleFillColor = fillColor
+        paddleStrokeColor = strokColor
+        setNeedsDisplay()
+    }
+    
     func setPath(path: UIBezierPath?, name: String)
     {
         bezierPaths[name] = path
@@ -24,6 +37,16 @@ class BezierPathsView: UIView {
         {
             path.stroke()
         }
+        
+        drawPaddle()
+    }
+    
+    func drawPaddle()
+    {
+        paddleFillColor?.setFill()
+        paddleStrokeColor?.setStroke()
+        paddlePath?.fill()
+        paddlePath?.stroke()
     }
     
 }
