@@ -23,6 +23,11 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     struct ConstantsForBreakItGame {
         static let NumberOfMaxBricksColumn = 4
         static let NumberOfBricksPerRow = 5
+        static let BallRadius = CGFloat(10.0)
+        static let BallPathName = "BreakItGameBallPathName"
+        static let PaddleWidth = CGFloat(5.0)
+        static let PaddelHeight = CGFloat(1.0)
+        static let PaddlePathName = "BreakItGamePaddlePathName"
     }
     
     var brickSize: CGSize {
@@ -36,9 +41,54 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         animator.addBehavior(breakItBehavior)
     }
     
+    // The method will save the state for current in the future
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated);
+        //println("View will disappear");
+    }
+    
     // Set the position of bricks, paddle and ball when game start and restart from pause
     // For the time being, just implement the start
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+        addBall()
+        addPaddle()
+        addBricks()
+        
+        //println("View did layout");
+    }
+    
+    var ballView: UIView?
+    
+    // Ball is the UIView
+    func addBall()
+    {
+        if ballView == nil
+        {
+            var frame = CGRect(origin: CGPointZero, size: CGSize(width: ConstantsForBreakItGame.BallRadius*2, height: ConstantsForBreakItGame.BallRadius*2))
+            
+            ballView = UIView(frame: frame)
+            ballView!.layer.cornerRadius = ConstantsForBreakItGame.BallRadius
+            ballView!.clipsToBounds = true
+            
+            ballView!.layer.borderColor = UIColor.blueColor().CGColor
+            ballView!.layer.borderWidth = 1
+            breakItBehavior.addBall(ballView!)
+        }
+        
+        
+    }
+    
+    // Paddle is the BezierPath
+    func addPaddle()
+    {
+        
+    }
+    
+    // Brick is the UIview
+    func addBricks()
+    {
+        
     }
 }

@@ -16,9 +16,32 @@ class BreakItBehavior: UIDynamicBehavior {
         return lazilyCreatedCollider
     }()
     
+    
     override init() {
         super.init()
         addChildBehavior(collider)
+    }
+    
+    // For the time being ball, paddle and bricks are implemented separated
+    
+    func addBall(ball: UIView)
+    {
+        addBehaviorItem(ball)
+    }
+    
+    func removeBall(ball: UIView)
+    {
+        removeBehaviorItem(ball)
+    }
+    
+    func addPaddle(path: UIBezierPath, named name: String)
+    {
+        
+    }
+    
+    func removePaddle(name: String)
+    {
+        
     }
     
     func addBrick(path: UIBezierPath, named name:String)
