@@ -10,20 +10,31 @@ import UIKit
 
 class BreakItBehavior: UIDynamicBehavior {
     
+    // MARK init dynamic animation behavior
     lazy var collider: UICollisionBehavior = {
         let lazilyCreatedCollider = UICollisionBehavior()
         lazilyCreatedCollider.translatesReferenceBoundsIntoBoundary = true
         return lazilyCreatedCollider
     }()
     
+    lazy var breakItBehavior: UIDynamicItemBehavior = {
+        let lazilyCreatedBreakItBehavior = UIDynamicItemBehavior()
+        lazilyCreatedBreakItBehavior.allowsRotation = true
+        lazilyCreatedBreakItBehavior.elasticity = 1.0
+        lazilyCreatedBreakItBehavior.friction = 0.0
+        lazilyCreatedBreakItBehavior.resistance = 0.0
+        return lazilyCreatedBreakItBehavior
+    }()
     
     override init() {
         super.init()
         addChildBehavior(collider)
+        addChildBehavior(breakItBehavior)
     }
     
-    // For the time being ball, paddle and bricks are implemented separated
+    // MARK: Set and remove items
     
+    // For the time being ball, paddle and bricks are implemented separated
     func addBall(ball: UIView)
     {
         addBehaviorItem(ball)
@@ -58,10 +69,24 @@ class BreakItBehavior: UIDynamicBehavior {
     {
         dynamicAnimator?.referenceView?.addSubview(item)
         collider.addItem(item)
+        breakItBehavior.addItem(item)
     }
     
     func removeBehaviorItem(item: UIView)
     {
         collider.removeItem(item)
+        breakItBehavior.removeItem(item)
     }
+    
+    // MARK: set and get ball status
+    func linearVelocityForBall(ball: UIDynamicItem) -> CGPoint
+    {
+        return breakItBehavior.linearVelocityForItem(ball)
+    }
+    
+    func setLinearVelocityForBall(velocity: CGPoint, ball: UIDynamicItem)
+    {
+        breakItBehavior.addLinearVelocity(velocity, forItem: ball)
+    }
+    
 }

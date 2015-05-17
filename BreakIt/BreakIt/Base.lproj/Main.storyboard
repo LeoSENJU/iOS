@@ -16,14 +16,6 @@
                     <view key="view" contentMode="scaleToFill" id="fjU-hu-aAo">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="tab 3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzl-0y-dkE">
-                                <rect key="frame" x="260" y="248" width="40" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="more" id="MxE-4B-JnE"/>
@@ -43,14 +35,6 @@
                     <view key="view" contentMode="scaleToFill" id="5jk-nS-2YT">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="tab 2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bN-RA-zC4">
-                                <rect key="frame" x="279" y="302" width="40" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Setting" image="setting" id="W9f-OF-7oe"/>
@@ -79,16 +63,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="5IA-Pn-Ohk" firstAttribute="top" secondItem="yFs-Ht-joI" secondAttribute="bottom" id="49L-jt-NO0"/>
-                            <constraint firstItem="yFs-Ht-joI" firstAttribute="top" secondItem="lYE-ba-YLE" secondAttribute="bottom" constant="-20" id="DUm-E0-Qs1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yFs-Ht-joI" secondAttribute="trailing" id="Ihf-LE-ixi"/>
                             <constraint firstItem="yFs-Ht-joI" firstAttribute="top" secondItem="lYE-ba-YLE" secondAttribute="bottom" id="aXe-dq-7He"/>
                             <constraint firstItem="yFs-Ht-joI" firstAttribute="leading" secondItem="3SJ-aO-84b" secondAttribute="leadingMargin" id="kU4-d0-tQ5"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="DUm-E0-Qs1"/>
-                            </mask>
-                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="featured" id="Rrk-W9-7ro"/>
                     <connections>
