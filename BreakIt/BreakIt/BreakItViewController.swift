@@ -169,6 +169,11 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         
     }
     
+    // TODO
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     // The method will save the state for current in the future
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated);
