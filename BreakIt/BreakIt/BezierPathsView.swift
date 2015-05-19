@@ -10,43 +10,42 @@
 import UIKit
 
 class BezierPathsView: UIView {
-
-    private var bezierPaths = [String : UIBezierPath]()
     
-    private var paddlePath: UIBezierPath?
-    private var paddleFillColor: UIColor?
-    private var paddleStrokeColor: UIColor?
-    
-    
-    func setPaddle(path: UIBezierPath?, fillColor: UIColor?, strokColor: UIColor?)
+    private class BreakItGamePaths
     {
-        paddlePath = path
-        paddleFillColor = fillColor
-        paddleStrokeColor = strokColor
-        setNeedsDisplay()
+        var path: UIBezierPath?
+        var fillColor: UIColor?
+        var strokeColor: UIColor?
+        
+        init(path: UIBezierPath?, fillColor: UIColor?, strokeColor: UIColor?)
+        {
+            self.path = path
+            self.fillColor = fillColor
+            self.strokeColor = strokeColor
+        }
+        
+        func draw()
+        {
+            fillColor?.setFill()
+            strokeColor?.setStroke()
+            path?.fill()
+            path?.stroke()
+        }
     }
+
+    private var bezierPaths = [BreakItGamePaths]()
     
-    func setPath(path: UIBezierPath?, name: String)
+    func setPath(path: UIBezierPath?, fillColor: UIColor?, strokeColor: UIColor?)
     {
-        bezierPaths[name] = path
+        bezierPaths.append(BreakItGamePaths(path: path, fillColor: fillColor, strokeColor: strokeColor))
         setNeedsDisplay()
     }
     
     override func drawRect(rect: CGRect) {
-        for (_, path) in bezierPaths
+        for path in bezierPaths
         {
-            path.stroke()
+            path.draw()
         }
-        
-        drawPaddle()
-    }
-    
-    func drawPaddle()
-    {
-        paddleFillColor?.setFill()
-        paddleStrokeColor?.setStroke()
-        paddlePath?.fill()
-        paddlePath?.stroke()
     }
     
 }

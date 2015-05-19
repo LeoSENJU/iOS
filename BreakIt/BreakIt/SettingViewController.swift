@@ -86,14 +86,18 @@ class SettingViewController: UITableViewController {
         isEdited = true
     }
     
+    
+    
     // Reading and saving userDrfaults
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         let defaults = NSUserDefaults.standardUserDefaults()
         isGravitationPulled = defaults.boolForKey(BreakItGameUserDefaultsKey.PullGravitationKey)
         rowOfBricks = defaults.integerForKey(BreakItGameUserDefaultsKey.RowOfBricksKey)
         numberOfBouncingBalls = defaults.integerForKey(BreakItGameUserDefaultsKey.NumberOfBouncingBallsKey)
         bouciness = defaults.doubleForKey(BreakItGameUserDefaultsKey.BouncinessKey)
+        
+        rowOfBricksStepper.maximumValue = Double(BreakItViewController.ConstantsForBreakItGame.NumberOfMaxBricksRow)
         
         isEdited = false
     }

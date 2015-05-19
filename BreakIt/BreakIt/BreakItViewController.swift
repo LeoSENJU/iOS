@@ -23,7 +23,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     let breakItBehavior = BreakItBehavior()
     
     struct ConstantsForBreakItGame {
-        static let NumberOfMaxBricksColumn = 4
+        static let NumberOfMaxBricksRow = 4
         static let NumberOfBricksPerRow = 5
         static let BlankHeight = CGFloat(10.0)
         
@@ -40,27 +40,30 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     
     var brickSize: CGSize {
         let brickWidth = gameView.bounds.size.width / CGFloat(ConstantsForBreakItGame.NumberOfBricksPerRow * 2)
-        let brickHeight = gameView.bounds.size.height / CGFloat(ConstantsForBreakItGame.NumberOfMaxBricksColumn * 3)
+        let brickHeight = gameView.bounds.size.height / CGFloat(ConstantsForBreakItGame.NumberOfMaxBricksRow * 3)
         return CGSize(width: brickWidth, height: brickHeight)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         animator.addBehavior(breakItBehavior)
-        initItems()
+        restartGame()
     }
     
-    func initItems()
+    // restart break it game using the user defaults
+    func restartGame()
     {
-        initBall()
+        var defaults = NSUserDefaults.standardUserDefaults()
+        
+        initBall(defaults.integerForKey(SettingViewController.BreakItGameUserDefaultsKey.NumberOfBouncingBallsKey))
         initPaddle()
-        initBrick()
+        initBrick(defaults.integerForKey(SettingViewController.BreakItGameUserDefaultsKey.RowOfBricksKey))
     }
     
     var ballView: UIView?
     var ballLinearVelocity: CGPoint = CGPointZero
     
-    func initBall()
+    func initBall(numOfBalls: Int)
     {
         let ballOrigin = CGPointZero
         var ballFrame = CGRect(origin: ballOrigin, size: CGSize(width: ConstantsForBreakItGame.BallRadius*2, height: ConstantsForBreakItGame.BallRadius*2))
@@ -83,7 +86,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
             let path = UIBezierPath(rect: CGRect(origin: self.paddleOriginPoint!, size: CGSize(width: ConstantsForBreakItGame.PaddleWidth, height: ConstantsForBreakItGame.PaddleHeight)))
             
             breakItBehavior.setPaddle(path, named: ConstantsForBreakItGame.PaddlePathName)
-            gameView.setPaddle(path, fillColor: ConstantsForBreakItGame.PaddleFillColor, strokColor: ConstantsForBreakItGame.PaddleStrokeColor)
+            gameView.setPath(path, fillColor: ConstantsForBreakItGame.PaddleFillColor, strokeColor: ConstantsForBreakItGame.PaddleStrokeColor)
         }
     }
     
@@ -92,7 +95,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         
     }
     
-    func initBrick()
+    func initBrick(rowOfBricks: Int)
     {
         
     }
@@ -176,13 +179,16 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        let defaluts = NSUserDefaults.standardUserDefaults()
+        let defaults = NSUserDefaults.standardUserDefaults()
         
-        if defaluts.boolForKey(SettingViewController.BreakItGameUserDefaultsKey.IsSettingEdited)
+        println(defaults.integerForKey(SettingViewController.BreakItGameUserDefaultsKey.NumberOfBouncingBallsKey))
+        
+        
+        if defaults.boolForKey(SettingViewController.BreakItGameUserDefaultsKey.IsSettingEdited)
         {
             currentGameResetAlert()
         }
-        defaluts.setBool(false, forKey: SettingViewController.BreakItGameUserDefaultsKey.IsSettingEdited)
+        defaults.setBool(false, forKey: SettingViewController.BreakItGameUserDefaultsKey.IsSettingEdited)
     }
     
     func currentGameResetAlert()
