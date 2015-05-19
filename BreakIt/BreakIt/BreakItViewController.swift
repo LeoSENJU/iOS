@@ -174,6 +174,31 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         super.viewWillAppear(animated)
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        let defaluts = NSUserDefaults.standardUserDefaults()
+        
+        if defaluts.boolForKey(SettingViewController.BreakItGameUserDefaultsKey.IsSettingEdited)
+        {
+            currentGameResetAlert()
+        }
+        defaluts.setBool(false, forKey: SettingViewController.BreakItGameUserDefaultsKey.IsSettingEdited)
+    }
+    
+    func currentGameResetAlert()
+    {
+        var alert = UIAlertController(title: "Restart game", message: "Your game setting has been changed, want to restart game now ?", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alert.addAction(UIAlertAction(title: "Cancle", style: UIAlertActionStyle.Cancel, handler: { (action) -> Void in
+            // do nothing when user choose to cancle restart the game
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Restart", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+            // restart the game using the new user game setting
+        }))
+        view.window?.rootViewController!.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     // The method will save the state for current in the future
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated);

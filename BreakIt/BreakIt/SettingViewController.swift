@@ -10,19 +10,20 @@ import UIKit
 
 class SettingViewController: UITableViewController {
     
-    
-    
     @IBOutlet weak var brickRowLabel: UILabel!
     @IBOutlet weak var grativationPullSwitch: UISwitch!
     @IBOutlet weak var rowOfBricksStepper: UIStepper!
     @IBOutlet weak var bouncingBallsSegments: UISegmentedControl!
     @IBOutlet weak var bouncinessSlider: UISlider!
     
+    var isEdited: Bool?
+    
     struct BreakItGameUserDefaultsKey {
         static let PullGravitationKey = "BraekItGamePullGravitation"
         static let RowOfBricksKey = "BraekItGameRowOfBricks"
         static let NumberOfBouncingBallsKey = "BraekItGamePullNumberOfBouncingBalls"
         static let BouncinessKey = "BraekItGamePullBounciness"
+        static let IsSettingEdited = "BreakItGameSettingEdited"
     }
     
     
@@ -67,18 +68,22 @@ class SettingViewController: UITableViewController {
     // MARK: linsteners of the UIController
     @IBAction func pullGravitation(sender: UISwitch) {
         isGravitationPulled = sender.selected
+        isEdited = true
     }
     
     @IBAction func changeRowOfBricks(sender: UIStepper) {
         rowOfBricks = Int(sender.value)
+        isEdited = true
     }
 
     @IBAction func changeNumberOfBouncingBalls(sender: UISegmentedControl) {
         numberOfBouncingBalls = sender.selectedSegmentIndex + 1
+        isEdited = true
     }
     
     @IBAction func changeBouciness(sender: UISlider) {
         bouciness = Double(sender.value)
+        isEdited = true
     }
     
     // Reading and saving userDrfaults
@@ -89,6 +94,8 @@ class SettingViewController: UITableViewController {
         rowOfBricks = defaults.integerForKey(BreakItGameUserDefaultsKey.RowOfBricksKey)
         numberOfBouncingBalls = defaults.integerForKey(BreakItGameUserDefaultsKey.NumberOfBouncingBallsKey)
         bouciness = defaults.doubleForKey(BreakItGameUserDefaultsKey.BouncinessKey)
+        
+        isEdited = false
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -98,6 +105,7 @@ class SettingViewController: UITableViewController {
         defaults.setInteger(rowOfBricks!, forKey: BreakItGameUserDefaultsKey.RowOfBricksKey)
         defaults.setInteger(numberOfBouncingBalls!, forKey: BreakItGameUserDefaultsKey.NumberOfBouncingBallsKey)
         defaults.setDouble(bouciness!, forKey: BreakItGameUserDefaultsKey.BouncinessKey)
+        defaults.setBool(isEdited!, forKey: BreakItGameUserDefaultsKey.IsSettingEdited)
     }
     
 }
