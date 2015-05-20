@@ -40,14 +40,13 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     
     var brickSize: CGSize {
         let brickWidth = gameView.bounds.size.width / CGFloat(ConstantsForBreakItGame.NumberOfBricksPerRow * 2)
-        let brickHeight = gameView.bounds.size.height / CGFloat(ConstantsForBreakItGame.NumberOfMaxBricksRow * 3)
+        let brickHeight = gameView.bounds.size.height / CGFloat(ConstantsForBreakItGame.NumberOfMaxBricksRow * 30)
         return CGSize(width: brickWidth, height: brickHeight)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         animator.addBehavior(breakItBehavior)
-        restartGame()
     }
     
     // restart break it game using the user defaults
@@ -63,6 +62,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     var ballView: UIView?
     var ballLinearVelocity: CGPoint = CGPointZero
     
+    // TODO to be modified from single ball to the number of balls to be spicified
     func initBall(numOfBalls: Int)
     {
         let ballOrigin = CGPointZero
@@ -86,7 +86,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
             let path = UIBezierPath(rect: CGRect(origin: self.paddleOriginPoint!, size: CGSize(width: ConstantsForBreakItGame.PaddleWidth, height: ConstantsForBreakItGame.PaddleHeight)))
             
             breakItBehavior.setPaddle(path, named: ConstantsForBreakItGame.PaddlePathName)
-            gameView.setPath(path, fillColor: ConstantsForBreakItGame.PaddleFillColor, strokeColor: ConstantsForBreakItGame.PaddleStrokeColor)
+            gameView.setPath(path, fillColor: ConstantsForBreakItGame.PaddleFillColor, strokeColor: ConstantsForBreakItGame.PaddleStrokeColor, name: ConstantsForBreakItGame.PaddlePathName)
         }
     }
     
@@ -97,12 +97,22 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     
     func initBrick(rowOfBricks: Int)
     {
-        
+        let size = brickSize
+        for i in 1...rowOfBricks
+        {
+            for j in 1...ConstantsForBreakItGame.NumberOfBricksPerRow
+            {
+                var brickFrame = CGRect(origin: CGPoint(x: size.width*CGFloat(2*i) - size.width, y: size.height*CGFloat(2*j) - size.height), size: brickSize)
+                let brickView = UIView(frame: brickFrame)
+                brickView.backgroundColor = UIColor.purpleColor()
+                breakItBehavior.addBrick(brickView)
+            }
+            
+        }
     }
     
     // MARK: status cahnged methods
     var isPaddleTabbed = false
-    var lastPaddleOriginLocation: CGPoint?
     
     @IBAction func drag(sender: UIPanGestureRecognizer) {
         let gesturePoint = sender.locationInView(gameView)
@@ -112,7 +122,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
             detectIsPaddleTabbed(gesturePoint)
         case .Changed:
             if isPaddleTabbed {
-                if let originPoint = lastPaddleOriginLocation {
+                if let originPoint = paddleOriginPoint{
                     var x = originPoint.x + sender.translationInView(gameView).x
                     if x < 0 {
                         x = 0
@@ -121,11 +131,9 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
                     }
                     paddleOriginPoint = CGPoint(x: x,
                         y: originPoint.y)
-                    sender
                 }
-                //originPoint.x += sender.translationInView(self.gameView).x
-                
             }
+            sender.setTranslation(CGPointZero, inView: gameView)
         case .Ended:
             isPaddleTabbed = false
         default: break
@@ -136,7 +144,6 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     {
         if let originPoint = paddleOriginPoint {
             let paddleRect = CGRect(origin: originPoint, size: CGSize(width: ConstantsForBreakItGame.PaddleWidth, height: ConstantsForBreakItGame.PaddleHeight))
-            lastPaddleOriginLocation = originPoint
             isPaddleTabbed = paddleRect.contains(point)
         }
     }
@@ -144,6 +151,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        restartGame()
         setBallStatus()
         setPaddleStatus()
         setBricksStatus()
@@ -180,9 +188,6 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         let defaults = NSUserDefaults.standardUserDefaults()
-        
-        println(defaults.integerForKey(SettingViewController.BreakItGameUserDefaultsKey.NumberOfBouncingBallsKey))
-        
         
         if defaults.boolForKey(SettingViewController.BreakItGameUserDefaultsKey.IsSettingEdited)
         {

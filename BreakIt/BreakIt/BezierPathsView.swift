@@ -33,16 +33,16 @@ class BezierPathsView: UIView {
         }
     }
 
-    private var bezierPaths = [BreakItGamePaths]()
+    private var bezierPaths = [String: BreakItGamePaths]()
     
-    func setPath(path: UIBezierPath?, fillColor: UIColor?, strokeColor: UIColor?)
+    func setPath(path: UIBezierPath?, fillColor: UIColor?, strokeColor: UIColor?, name: String)
     {
-        bezierPaths.append(BreakItGamePaths(path: path, fillColor: fillColor, strokeColor: strokeColor))
+        bezierPaths[name] = BreakItGamePaths(path: path, fillColor: fillColor, strokeColor: strokeColor)
         setNeedsDisplay()
     }
     
     override func drawRect(rect: CGRect) {
-        for path in bezierPaths
+        for (_, path) in bezierPaths
         {
             path.draw()
         }

@@ -37,6 +37,7 @@ class BreakItBehavior: UIDynamicBehavior {
     // For the time being ball, paddle and bricks are implemented separated
     func addBall(ball: UIView)
     {
+        removeBall(ball)
         addBehaviorItem(ball)
     }
     
@@ -52,14 +53,15 @@ class BreakItBehavior: UIDynamicBehavior {
         collider.addBoundaryWithIdentifier(name, forPath: path)
     }
     
-    func addBrick(path: UIBezierPath, named name:String)
+    func addBrick(brick: UIView)
     {
-        
+        removeBrick(brick)
+        addBehaviorItem(brick)
     }
     
-    func removeBrick(name: String)
+    func removeBrick(brick: UIView)
     {
-        
+        removeBehaviorItem(brick)
     }
     
     func addBehaviorItem(item: UIView)
