@@ -12,7 +12,6 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     
     @IBOutlet weak var gameView: BezierPathsView!
     
-    
     // MARK: init view controller
     lazy var animator: UIDynamicAnimator = {
        let lazilyCreatedDynamicAnimator = UIDynamicAnimator(referenceView: self.gameView)
@@ -38,17 +37,14 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         static let PaddleStrokeColor = UIColor.blackColor()
     }
     
-    var brickSize: CGSize {
-        let brickWidth = gameView.bounds.size.width / CGFloat(ConstantsForBreakItGame.NumberOfBricksPerRow * 2)
-        let brickHeight = gameView.bounds.size.height / CGFloat(ConstantsForBreakItGame.NumberOfMaxBricksRow * 30)
-        return CGSize(width: brickWidth, height: brickHeight)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         animator.addBehavior(breakItBehavior)
+        
+        restartGame()
     }
     
+    // MARK: restart game using the user default settings
     // restart break it game using the user defaults
     func restartGame()
     {
@@ -92,18 +88,51 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     
     func initPaddle()
     {
+        paddleOriginPoint = CGPointZero
+    }
+    
+    class Brick {
+        var view: UIView
+        var row: Int
+        var column: Int
         
+        init(view: UIView, row: Int, column: Int){
+            self.view = view
+            self.row = row
+            self.column = column
+        }
+    }
+    
+    var brickViews: [Brick] = [Brick]()
+    
+    var brickSize: CGSize {
+        get{
+            let brickWidth = gameView.bounds.size.width / CGFloat(ConstantsForBreakItGame.NumberOfBricksPerRow * 2)
+            let brickHeight = gameView.bounds.size.height / CGFloat(ConstantsForBreakItGame.NumberOfMaxBricksRow * 10)
+            return CGSize(width: brickWidth, height: brickHeight)
+        }
+    
+    }
+    
+    var brickBlank: CGSize {
+        get {
+            return CGSize(width: (gameView.bounds.size.width - brickSize.width * CGFloat(ConstantsForBreakItGame.NumberOfBricksPerRow)) / (CGFloat(ConstantsForBreakItGame.NumberOfBricksPerRow) + 1), height: brickSize.height)
+        }
     }
     
     func initBrick(rowOfBricks: Int)
     {
         let size = brickSize
+        let blank = brickBlank
+        
         for i in 1...rowOfBricks
         {
             for j in 1...ConstantsForBreakItGame.NumberOfBricksPerRow
             {
-                var brickFrame = CGRect(origin: CGPoint(x: size.width*CGFloat(2*i) - size.width, y: size.height*CGFloat(2*j) - size.height), size: brickSize)
+                var brickFrame = CGRect(origin: CGPoint(x: CGFloat(j)*blank.width + CGFloat(j-1)*size.width, y: CGFloat(i)*blank.height + CGFloat(i-1)*size.height), size: size)
                 let brickView = UIView(frame: brickFrame)
+                brickViews.append(Brick(view: brickView, row: i, column: j))
+                
                 brickView.backgroundColor = UIColor.purpleColor()
                 breakItBehavior.addBrick(brickView)
             }
@@ -151,15 +180,18 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        restartGame()
         setBallStatus()
         setPaddleStatus()
         setBricksStatus()
+        //println("didlayout subviews")
     }
     
     // Ball is the UIView
     func setBallStatus()
     {
+        let size = brickSize
+        let blank = brickBlank
+        
         if let view = ballView {
             breakItBehavior.removeBall(view)
             view.frame.origin = CGPoint(x: gameView.bounds.size.width / CGFloat(2.0) - ConstantsForBreakItGame.BallRadius, y: gameView.bounds.size.height - ConstantsForBreakItGame.PaddleHeight - ConstantsForBreakItGame.BallRadius*2 - ConstantsForBreakItGame.BlankHeight)
@@ -177,6 +209,13 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     // Brick is the UIview
     func setBricksStatus()
     {
+        let size = brickSize
+        let blank = brickBlank
+        
+        for brick in brickViews {
+            brick.view.frame = CGRect(origin: CGPoint(x: CGFloat(brick.column)*blank.width + CGFloat(brick.column-1)*size.width, y: CGFloat(brick.row)*blank.height + CGFloat(brick.row-1)*size.height), size: size)
+            breakItBehavior.addBrick(brick.view)
+        }
         
     }
     
@@ -213,6 +252,5 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     // The method will save the state for current in the future
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated);
-        //println("View will disappear");
     }
 }

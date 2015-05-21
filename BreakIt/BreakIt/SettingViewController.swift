@@ -86,8 +86,6 @@ class SettingViewController: UITableViewController {
         isEdited = true
     }
     
-    
-    
     // Reading and saving userDrfaults
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
