@@ -75,6 +75,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         view.backgroundColor = UIColor.blueColor()
         
         ballLinearVelocity = ConstantsForBreakItGame.BallInitVelocity
+        breakItBehavior.setLinearVelocityForBall(ballLinearVelocity, ball: ballView!)
     }
     
     var paddleOriginPoint: CGPoint? {
@@ -196,7 +197,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
             breakItBehavior.removeBall(view)
             view.frame.origin = CGPoint(x: gameView.bounds.size.width / CGFloat(2.0) - ConstantsForBreakItGame.BallRadius, y: gameView.bounds.size.height - ConstantsForBreakItGame.PaddleHeight - ConstantsForBreakItGame.BallRadius*2 - ConstantsForBreakItGame.BlankHeight)
             breakItBehavior.addBall(view)
-            //breakItBehavior.setLinearVelocityForBall(ConstantsForBreakItGame.BallInitVelocity, ball: view)
+            breakItBehavior.setLinearVelocityForBall(ConstantsForBreakItGame.BallInitVelocity, ball: view)
         }
     }
     
