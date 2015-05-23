@@ -17,11 +17,17 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
        let lazilyCreatedDynamicAnimator = UIDynamicAnimator(referenceView: self.gameView)
         lazilyCreatedDynamicAnimator.delegate = self
         return lazilyCreatedDynamicAnimator
+        
     }()
     
     let breakItBehavior = BreakItBehavior()
     
     struct ConstantsForBreakItGame {
+        static let LeftBoundaryName = "BreakItGameLeftBoundaryName"
+        static let RightBoundaryName = "BreakItGameRightBoundargName"
+        static let TopBoundaryName = "BreakItGameTopBoundaryName"
+        static let BottomBoundaryName = "BreakItGameBottomBoundaryName"
+        
         static let BlankHeight = CGFloat(10.0)
         
         static let NumberOfMaxBricksRow = 4
@@ -194,10 +200,24 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        setGameBoundries()
         setBallStatus()
         setPaddleStatus()
         setBricksStatus()
         //println("didlayout subviews")
+    }
+    
+    func setGameBoundries()
+    {
+        let margin = CGFloat(1.0)
+        let leftTopPoint = CGPoint(x: gameView.bounds.minX + margin, y: gameView.bounds.minY + margin)
+        let rightTopPoint = CGPoint(x: gameView.bounds.maxX - margin, y: gameView.bounds.minY + margin)
+        let leftBottomPoint = CGPoint(x: gameView.bounds.minX + margin, y: gameView.bounds.maxY - margin)
+        let rightBottomPoint = CGPoint(x: gameView.bounds.maxX - margin, y: gameView.bounds.maxY - margin)
+        breakItBehavior.setBoundary(ConstantsForBreakItGame.LeftBoundaryName, fromPoint: leftTopPoint, toPoint: leftBottomPoint)
+        breakItBehavior.setBoundary(ConstantsForBreakItGame.RightBoundaryName, fromPoint: rightTopPoint, toPoint: rightBottomPoint)
+        breakItBehavior.setBoundary(ConstantsForBreakItGame.TopBoundaryName, fromPoint: leftTopPoint, toPoint: rightTopPoint)
+        breakItBehavior.setBoundary(ConstantsForBreakItGame.BottomBoundaryName, fromPoint: leftBottomPoint, toPoint: rightBottomPoint)
     }
     
     // Ball is the UIView

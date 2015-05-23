@@ -8,12 +8,14 @@
 
 import UIKit
 
-class BreakItBehavior: UIDynamicBehavior {
+class BreakItBehavior: UIDynamicBehavior, UICollisionBehaviorDelegate {
     
     // MARK init dynamic animation behavior
     lazy var collider: UICollisionBehavior = {
         let lazilyCreatedCollider = UICollisionBehavior()
         lazilyCreatedCollider.translatesReferenceBoundsIntoBoundary = true
+        lazilyCreatedCollider.collisionDelegate = self
+        
         return lazilyCreatedCollider
     }()
     
@@ -62,6 +64,11 @@ class BreakItBehavior: UIDynamicBehavior {
     {
         collider.removeBoundaryWithIdentifier(name)
     }
+    // MARK: set boundries
+    func setBoundary(name: String, fromPoint: CGPoint, toPoint: CGPoint){
+        collider.removeBoundaryWithIdentifier(name)
+        collider.addBoundaryWithIdentifier(name, fromPoint: fromPoint, toPoint: toPoint)
+    }
     
     // MARK: set and get ball status
     func linearVelocityForBall(ball: UIDynamicItem) -> CGPoint
@@ -86,5 +93,17 @@ class BreakItBehavior: UIDynamicBehavior {
     {
         collider.removeItem(item)
         breakItBehavior.removeItem(item)
+    }
+    
+    // MARK: manage collision behavior between ball/bricks and ball/boundaries
+    func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying, atPoint p: CGPoint) {
+        println(identifier)
+        /*
+        if let name = identifier as? String {
+            if name.hasPrefix(BreakItViewController.ConstantsForBreakItGame.BrickPathName){
+                removeBrick(name)
+            }
+        }
+        */
     }
 }
