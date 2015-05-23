@@ -41,6 +41,12 @@ class BezierPathsView: UIView {
         setNeedsDisplay()
     }
     
+    func removePath(name: String)
+    {
+        bezierPaths.removeValueForKey(name)
+        setNeedsDisplay()
+    }
+    
     override func drawRect(rect: CGRect) {
         for (_, path) in bezierPaths
         {

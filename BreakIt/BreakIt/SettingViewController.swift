@@ -10,14 +10,14 @@ import UIKit
 
 class SettingViewController: UITableViewController {
     
+    // MARK: IBoutlets
     @IBOutlet weak var brickRowLabel: UILabel!
     @IBOutlet weak var grativationPullSwitch: UISwitch!
     @IBOutlet weak var rowOfBricksStepper: UIStepper!
     @IBOutlet weak var bouncingBallsSegments: UISegmentedControl!
     @IBOutlet weak var bouncinessSlider: UISlider!
     
-    var isEdited: Bool?
-    
+    // MARK: Keys for the user settings
     struct BreakItGameUserDefaultsKey {
         static let PullGravitationKey = "BraekItGamePullGravitation"
         static let RowOfBricksKey = "BraekItGameRowOfBricks"
@@ -26,6 +26,8 @@ class SettingViewController: UITableViewController {
         static let IsSettingEdited = "BreakItGameSettingEdited"
     }
     
+    // MARK: propertes for setting parameters
+    var isEdited: Bool?
     
     var isGravitationPulled: Bool? {
         didSet {
@@ -86,7 +88,7 @@ class SettingViewController: UITableViewController {
         isEdited = true
     }
     
-    // Reading and saving userDrfaults
+    // MARK: Reading and saving userDrfaults
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         let defaults = NSUserDefaults.standardUserDefaults()

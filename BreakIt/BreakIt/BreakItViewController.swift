@@ -12,17 +12,11 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     
     @IBOutlet weak var gameView: BezierPathsView!
     
-    // MARK: init view controller
-    lazy var animator: UIDynamicAnimator = {
-       let lazilyCreatedDynamicAnimator = UIDynamicAnimator(referenceView: self.gameView)
-        lazilyCreatedDynamicAnimator.delegate = self
-        return lazilyCreatedDynamicAnimator
-        
-    }()
-    
-    let breakItBehavior = BreakItBehavior()
-    
+    // MARK: static constants for break it game
     struct ConstantsForBreakItGame {
+        static let BrickCollisionNotification = "BreakItGameBrickCollision"
+        static let BallHitBottomNotification = "BreakItGameBallHitBottom"
+        
         static let LeftBoundaryName = "BreakItGameLeftBoundaryName"
         static let RightBoundaryName = "BreakItGameRightBoundargName"
         static let TopBoundaryName = "BreakItGameTopBoundaryName"
@@ -47,16 +41,32 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         static let PaddleStrokeColor = UIColor.blackColor()
     }
     
+    // MARK: init view controller
+    lazy var animator: UIDynamicAnimator = {
+       let lazilyCreatedDynamicAnimator = UIDynamicAnimator(referenceView: self.gameView)
+        lazilyCreatedDynamicAnimator.delegate = self
+        return lazilyCreatedDynamicAnimator
+        
+    }()
+    
+    let breakItBehavior = BreakItBehavior()
+    
+    private var brickCollsionObserver: NSObjectProtocol?
+    private var ballHitBottomObserver: NSObjectProtocol?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         animator.addBehavior(breakItBehavior)
         
-        restartGame()
+        startCollisionEvenObserver()
+        
+        startGame()
     }
     
     // MARK: restart game using the user default settings
     // restart break it game using the user defaults
-    func restartGame()
+    func startGame()
     {
         var defaults = NSUserDefaults.standardUserDefaults()
         
@@ -220,7 +230,6 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         breakItBehavior.setBoundary(ConstantsForBreakItGame.BottomBoundaryName, fromPoint: leftBottomPoint, toPoint: rightBottomPoint)
     }
     
-    // Ball is the UIView
     func setBallStatus()
     {
         let size = brickSize
@@ -260,11 +269,6 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         
     }
     
-    // TODO
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -278,7 +282,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     
     func currentGameResetAlert()
     {
-        var alert = UIAlertController(title: "Restart game", message: "Your game setting has been changed, want to restart game now ?", preferredStyle: UIAlertControllerStyle.Alert)
+        var alert = UIAlertController(title: "Restart game", message: "Your game setting has been changed, want to restart game now?", preferredStyle: UIAlertControllerStyle.Alert)
         
         alert.addAction(UIAlertAction(title: "Cancle", style: UIAlertActionStyle.Cancel, handler: { (action) -> Void in
             // do nothing when user choose to cancle restart the game
@@ -294,4 +298,59 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated);
     }
+    
+    // MARK: handle collision events
+    
+    func startCollisionEvenObserver()
+    {
+        let center = NSNotificationCenter.defaultCenter()
+        let queue = NSOperationQueue.mainQueue()
+        
+        brickCollsionObserver = center.addObserverForName(ConstantsForBreakItGame.BrickCollisionNotification, object: nil, queue: queue) {
+            [unowned self] notification in
+            if let name = notification.userInfo?[ConstantsForBreakItGame.BrickPathName] as? String {
+                self.removeBrickWithName(name)
+            }
+        }
+        
+        ballHitBottomObserver = center.addObserverForName(ConstantsForBreakItGame.BallHitBottomNotification, object: nil, queue: queue) {
+            [unowned self] notification in
+            self.finishGame()
+        }
+        
+    }
+    
+    func stopCollisionEventObserver()
+    {
+        if let observer = brickCollsionObserver {
+            NSNotificationCenter.defaultCenter().removeObserver(observer)
+        }
+        
+        if let observer = ballHitBottomObserver {
+            NSNotificationCenter.defaultCenter().removeObserver(observer)
+        }
+    }
+    
+    func removeBrickWithName(name: String)
+    {
+        for brick in brickViews {
+            if brick.name == name {
+                breakItBehavior.removeBrick(name)
+                gameView.removePath(name)
+                break
+            }
+        }
+    }
+    
+    func finishGame()
+    {
+        
+    }
+    
+    // remove observer
+    deinit
+    {
+        stopCollisionEventObserver()
+    }
+    
 }

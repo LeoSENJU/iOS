@@ -97,13 +97,17 @@ class BreakItBehavior: UIDynamicBehavior, UICollisionBehaviorDelegate {
     
     // MARK: manage collision behavior between ball/bricks and ball/boundaries
     func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying, atPoint p: CGPoint) {
-        println(identifier)
-        /*
+        //println(identifier)
+        
         if let name = identifier as? String {
-            if name.hasPrefix(BreakItViewController.ConstantsForBreakItGame.BrickPathName){
-                removeBrick(name)
+            if name.hasPrefix(BreakItViewController.ConstantsForBreakItGame.BrickPathName) {
+                NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: BreakItViewController.ConstantsForBreakItGame.BrickCollisionNotification, object: nil, userInfo: [BreakItViewController.ConstantsForBreakItGame.BrickPathName : name]))
+            }
+            
+            if name == BreakItViewController.ConstantsForBreakItGame.BottomBoundaryName {
+                NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: BreakItViewController.ConstantsForBreakItGame.BallHitBottomNotification, object: nil))
             }
         }
-        */
+        
     }
 }
