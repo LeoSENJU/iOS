@@ -22,9 +22,13 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     let breakItBehavior = BreakItBehavior()
     
     struct ConstantsForBreakItGame {
+        static let BlankHeight = CGFloat(10.0)
+        
         static let NumberOfMaxBricksRow = 4
         static let NumberOfBricksPerRow = 5
-        static let BlankHeight = CGFloat(10.0)
+        static let BrickPathName = "BreakItGameBrickPathName"
+        static let BrickFillColor = UIColor.purpleColor()
+        static let BrickStrokeColor = UIColor.purpleColor()
         
         static let BallRadius = CGFloat(10.0)
         static let BallPathName = "BreakItGameBallPathName"
@@ -93,14 +97,20 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     }
     
     class Brick {
-        var view: UIView
+        var path: UIBezierPath
+        var name: String
         var row: Int
         var column: Int
+        var fillColor: UIColor
+        var strokeColor: UIColor
         
-        init(view: UIView, row: Int, column: Int){
-            self.view = view
+        init(path: UIBezierPath, name: String, row: Int, column: Int, fillColor: UIColor, strokeColor: UIColor){
+            self.path = path
+            self.name = name
             self.row = row
             self.column = column
+            self.fillColor = fillColor
+            self.strokeColor = strokeColor
         }
     }
     
@@ -130,12 +140,15 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         {
             for j in 1...ConstantsForBreakItGame.NumberOfBricksPerRow
             {
-                var brickFrame = CGRect(origin: CGPoint(x: CGFloat(j)*blank.width + CGFloat(j-1)*size.width, y: CGFloat(i)*blank.height + CGFloat(i-1)*size.height), size: size)
-                let brickView = UIView(frame: brickFrame)
-                brickViews.append(Brick(view: brickView, row: i, column: j))
+                let path = UIBezierPath(rect: CGRect(origin: CGPoint(x: CGFloat(j)*blank.width + CGFloat(j-1)*size.width, y: CGFloat(i)*blank.height + CGFloat(i-1)*size.height), size: size))
+                let name = ConstantsForBreakItGame.BrickPathName + ("\(i)_\(j)")
+                let fillColor = ConstantsForBreakItGame.BrickFillColor
+                let strokeColor = ConstantsForBreakItGame.BrickStrokeColor
                 
-                brickView.backgroundColor = UIColor.purpleColor()
-                breakItBehavior.addBrick(brickView)
+                brickViews.append(Brick(path: path, name: name, row: i, column: j, fillColor: fillColor, strokeColor: strokeColor))
+                
+                breakItBehavior.addBrick(path, named: name)
+                gameView.setPath(path, fillColor: fillColor, strokeColor: strokeColor, name: name)
             }
             
         }
@@ -204,7 +217,11 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     // Paddle is the BezierPath
     func setPaddleStatus()
     {
-        paddleOriginPoint = CGPoint(x: (gameView.bounds.size.width - ConstantsForBreakItGame.PaddleWidth) / CGFloat(2.0)  , y: gameView.bounds.size.height - ConstantsForBreakItGame.PaddleHeight - ConstantsForBreakItGame.BlankHeight)
+        if paddleOriginPoint?.y != gameView.bounds.size.height - ConstantsForBreakItGame.PaddleHeight - ConstantsForBreakItGame.BlankHeight
+        {
+            paddleOriginPoint = CGPoint(x: (gameView.bounds.size.width - ConstantsForBreakItGame.PaddleWidth) / CGFloat(2.0)  , y: gameView.bounds.size.height - ConstantsForBreakItGame.PaddleHeight - ConstantsForBreakItGame.BlankHeight)
+        }
+        
     }
     
     // Brick is the UIview
@@ -214,8 +231,11 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         let blank = brickBlank
         
         for brick in brickViews {
-            brick.view.frame = CGRect(origin: CGPoint(x: CGFloat(brick.column)*blank.width + CGFloat(brick.column-1)*size.width, y: CGFloat(brick.row)*blank.height + CGFloat(brick.row-1)*size.height), size: size)
-            breakItBehavior.addBrick(brick.view)
+            let path = UIBezierPath(rect: CGRect(origin: CGPoint(x: CGFloat(brick.column)*blank.width + CGFloat(brick.column-1)*size.width, y: CGFloat(brick.row)*blank.height + CGFloat(brick.row-1)*size.height), size: size))
+            
+            brick.path = path
+            breakItBehavior.addBrick(path, named: brick.name)
+            gameView.setPath(path, fillColor: brick.fillColor, strokeColor: brick.strokeColor, name: brick.name)
         }
         
     }

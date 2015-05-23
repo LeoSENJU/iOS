@@ -49,32 +49,18 @@ class BreakItBehavior: UIDynamicBehavior {
     func setPaddle(path: UIBezierPath, named name: String)
     {
         collider.removeBoundaryWithIdentifier(name)
+        collider.addBoundaryWithIdentifier(name, forPath: path)
+    }
+    
+    func addBrick(path: UIBezierPath, named name: String)
+    {
         collider.removeBoundaryWithIdentifier(name)
         collider.addBoundaryWithIdentifier(name, forPath: path)
     }
     
-    func addBrick(brick: UIView)
+    func removeBrick(name: String)
     {
-        removeBrick(brick)
-        addBehaviorItem(brick)
-    }
-    
-    func removeBrick(brick: UIView)
-    {
-        removeBehaviorItem(brick)
-    }
-    
-    func addBehaviorItem(item: UIView)
-    {
-        dynamicAnimator?.referenceView?.addSubview(item)
-        collider.addItem(item)
-        breakItBehavior.addItem(item)
-    }
-    
-    func removeBehaviorItem(item: UIView)
-    {
-        collider.removeItem(item)
-        breakItBehavior.removeItem(item)
+        collider.removeBoundaryWithIdentifier(name)
     }
     
     // MARK: set and get ball status
@@ -88,4 +74,17 @@ class BreakItBehavior: UIDynamicBehavior {
         breakItBehavior.addLinearVelocity(velocity, forItem: ball)
     }
     
+    // MARK: private functions to add and remove behavior items
+    private func addBehaviorItem(item: UIView)
+    {
+        dynamicAnimator?.referenceView?.addSubview(item)
+        collider.addItem(item)
+        breakItBehavior.addItem(item)
+    }
+    
+    private func removeBehaviorItem(item: UIView)
+    {
+        collider.removeItem(item)
+        breakItBehavior.removeItem(item)
+    }
 }
