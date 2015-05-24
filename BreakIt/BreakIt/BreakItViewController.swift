@@ -32,7 +32,8 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         
         static let BallRadius = CGFloat(15.0)
         static let BallPathName = "BreakItGameBallPathName"
-        static let BallInitVelocity = CGPoint(x: 0.0, y: -500.0)
+        static let BallDefaultVelocity = -500.0
+        static let BallFillColor = UIColor.blueColor()
         
         static let PaddleWidth = CGFloat(70.0)
         static let PaddleHeight = CGFloat(15.0)
@@ -75,27 +76,47 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         initBrick(defaults.integerForKey(SettingViewController.BreakItGameUserDefaultsKey.RowOfBricksKey))
     }
     
-    var ballView: UIView?
-    var ballLinearVelocity: CGPoint = CGPointZero
+    class Ball {
+        var view: UIView
+        var velocity: CGPoint
+        
+        init(view: UIView)
+        {
+            self.view = view
+            let angle = (Double(arc4random() / UINT32_MAX) - 0.5) * M_PI_4
+            self.velocity = CGPoint(x: sin(angle)*ConstantsForBreakItGame.BallDefaultVelocity, y: cos(angle)*ConstantsForBreakItGame.BallDefaultVelocity)
+        }
+    }
     
-    // TODO to be modified from single ball to the number of balls to be spicified
+    var balls: [Ball] = [Ball]()
+    
     func initBall(numOfBalls: Int)
     {
-        let ballOrigin = CGPointZero
-        var ballFrame = CGRect(origin: ballOrigin, size: CGSize(width: ConstantsForBreakItGame.BallRadius*2, height: ConstantsForBreakItGame.BallRadius*2))
+        if !balls.isEmpty {
+            for ball in balls {
+                breakItBehavior.removeBall(ball.view)
+                ball.view.removeFromSuperview()
+            }
+            balls.removeAll(keepCapacity: false)
+        }
         
-        ballView = UIView(frame: ballFrame)
-        let view = ballView!
-        
-        view.layer.cornerRadius = ConstantsForBreakItGame.BallRadius
-        view.clipsToBounds = true
-        
-        view.layer.borderColor = UIColor.blueColor().CGColor
-        view.layer.borderWidth = 1
-        view.backgroundColor = UIColor.blueColor()
-        
-        ballLinearVelocity = ConstantsForBreakItGame.BallInitVelocity
-        breakItBehavior.setLinearVelocityForBall(ballLinearVelocity, ball: ballView!)
+        let ballSize = CGSize(width: ConstantsForBreakItGame.BallRadius*2, height: ConstantsForBreakItGame.BallRadius*2)
+        for i in 0..<numOfBalls {
+            let ballOrigin = CGPoint(x: gameView.frame.midX - CGFloat(numOfBalls-1+2*i)*ConstantsForBreakItGame.BallRadius , y: gameView.frame.height * CGFloat(2.0 / 3.0))
+            var ballFrame = CGRect(origin: ballOrigin, size: ballSize)
+            let ballView = UIView(frame: ballFrame)
+            
+            ballView.layer.cornerRadius = ConstantsForBreakItGame.BallRadius
+            ballView.clipsToBounds = true
+            ballView.layer.borderColor = ConstantsForBreakItGame.BallFillColor.CGColor
+            ballView.layer.borderWidth = 1
+            ballView.layer.backgroundColor = ConstantsForBreakItGame.BallFillColor.CGColor
+            
+            let ball = Ball(view: ballView)
+            balls.append(ball)
+            breakItBehavior.addBall(ballView)
+            breakItBehavior.setLinearVelocityForBall(ball.velocity, ball: ballView)
+        }
     }
     
     var paddleOriginPoint: CGPoint? {
@@ -153,6 +174,14 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     {
         let size = brickSize
         let blank = brickBlank
+        
+        if !brickViews.isEmpty {
+            for brick in brickViews {
+                brick.view.removeFromSuperview()
+                breakItBehavior.removeBrick(brick.name)
+            }
+            brickViews.removeAll(keepCapacity: false)
+        }
         
         for i in 1...rowOfBricks
         {
@@ -235,6 +264,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     
     func setBallStatus()
     {
+        /*
         let size = brickSize
         let blank = brickBlank
         
@@ -244,6 +274,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
             breakItBehavior.addBall(view)
             breakItBehavior.setLinearVelocityForBall(ConstantsForBreakItGame.BallInitVelocity, ball: view)
         }
+        */
     }
     
     // Paddle is the BezierPath
@@ -294,8 +325,9 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
             // do nothing when user choose to cancle restart the game
         }))
         
-        alert.addAction(UIAlertAction(title: "Restart", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+        alert.addAction(UIAlertAction(title: "Restart", style: UIAlertActionStyle.Default, handler: { [unowned self] action -> Void in
             // restart the game using the new user game setting
+            self.startGame()
         }))
         view.window?.rootViewController!.presentViewController(alert, animated: true, completion: nil)
     }
@@ -358,6 +390,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     
     func finishGame()
     {
+        // TODO
     }
     
     // remove observer
