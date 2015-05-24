@@ -12,6 +12,8 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     
     @IBOutlet weak var gameView: BezierPathsView!
     
+    @IBOutlet weak var hintLabel: UILabel!
+    
     // MARK: static constants for break it game
     struct ConstantsForBreakItGame {
         static let BrickCollisionNotification = "BreakItGameBrickCollision"
@@ -32,10 +34,10 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         
         static let BallRadius = CGFloat(15.0)
         static let BallPathName = "BreakItGameBallPathName"
-        static let BallDefaultVelocity = -500.0
+        static let BallDefaultVelocity = 500.0
         static let BallFillColor = UIColor.blueColor()
         
-        static let PaddleWidth = CGFloat(70.0)
+        static let PaddleWidth = CGFloat(100.0)
         static let PaddleHeight = CGFloat(15.0)
         static let PaddlePathName = "BreakItGamePaddlePathName"
         static let PaddleFillColor = UIColor.blackColor()
@@ -55,6 +57,15 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     private var brickCollsionObserver: NSObjectProtocol?
     private var ballHitBottomObserver: NSObjectProtocol?
     
+    var isGameOver: Bool = false
+    var isGamePause: Bool = false {
+        didSet {
+            if self.isGamePause && !isGameOver {
+                self.hintLabel.hidden = false
+                self.hintLabel.text = "Continue?"
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +80,10 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     // start break it game using the user defaults
     func startGame()
     {
+        hintLabel.hidden = true
+        isGameOver = false
+        isGamePause = false
+        
         var defaults = NSUserDefaults.standardUserDefaults()
         
         initBall(defaults.integerForKey(SettingViewController.BreakItGameUserDefaultsKey.NumberOfBouncingBallsKey))
@@ -83,7 +98,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         init(view: UIView)
         {
             self.view = view
-            let angle = (Double(arc4random() / UINT32_MAX) - 0.5) * M_PI_4
+            var angle = (Double(arc4random() % UINT32_MAX) - 0.5) * M_PI_2
             self.velocity = CGPoint(x: sin(angle)*ConstantsForBreakItGame.BallDefaultVelocity, y: cos(angle)*ConstantsForBreakItGame.BallDefaultVelocity)
         }
     }
@@ -102,7 +117,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         
         let ballSize = CGSize(width: ConstantsForBreakItGame.BallRadius*2, height: ConstantsForBreakItGame.BallRadius*2)
         for i in 0..<numOfBalls {
-            let ballOrigin = CGPoint(x: gameView.frame.midX - CGFloat(numOfBalls-1+2*i)*ConstantsForBreakItGame.BallRadius , y: gameView.frame.height * CGFloat(2.0 / 3.0))
+            let ballOrigin = CGPoint(x: gameView.frame.midX - CGFloat(numOfBalls-1+2*i)*ConstantsForBreakItGame.BallRadius , y: gameView.frame.height * CGFloat(1.0 / 2.0))
             var ballFrame = CGRect(origin: ballOrigin, size: ballSize)
             let ballView = UIView(frame: ballFrame)
             
@@ -115,7 +130,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
             let ball = Ball(view: ballView)
             balls.append(ball)
             breakItBehavior.addBall(ballView)
-            breakItBehavior.setLinearVelocityForBall(ball.velocity, ball: ballView)
+            breakItBehavior.setLinearVelocityForBall(ballView, velocity: ball.velocity)
         }
     }
     
@@ -239,14 +254,23 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         }
     }
     
+    
+    @IBAction func tap(sender: UITapGestureRecognizer) {
+        if isGameOver {
+            startGame()
+        } else if isGamePause {
+            isGamePause = false
+            hintLabel.hidden = true
+            setBallStatus()
+        }
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         setGameBoundries()
-        setBallStatus()
         setPaddleStatus()
         setBricksStatus()
-        //println("didlayout subviews")
     }
     
     func setGameBoundries()
@@ -264,17 +288,9 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     
     func setBallStatus()
     {
-        /*
-        let size = brickSize
-        let blank = brickBlank
-        
-        if let view = ballView {
-            breakItBehavior.removeBall(view)
-            view.frame.origin = CGPoint(x: gameView.bounds.size.width / CGFloat(2.0) - ConstantsForBreakItGame.BallRadius, y: gameView.bounds.size.height - ConstantsForBreakItGame.PaddleHeight - ConstantsForBreakItGame.BallRadius*2 - ConstantsForBreakItGame.BlankHeight)
-            breakItBehavior.addBall(view)
-            breakItBehavior.setLinearVelocityForBall(ConstantsForBreakItGame.BallInitVelocity, ball: view)
+        for ball in balls {
+            breakItBehavior.setLinearVelocityForBall(ball.view, velocity: ball.velocity)
         }
-        */
     }
     
     // Paddle is the BezierPath
@@ -321,8 +337,8 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     {
         var alert = UIAlertController(title: "Restart game", message: "Your game setting has been changed, want to restart game now?", preferredStyle: UIAlertControllerStyle.Alert)
         
-        alert.addAction(UIAlertAction(title: "Cancle", style: UIAlertActionStyle.Cancel, handler: { (action) -> Void in
-            // do nothing when user choose to cancle restart the game
+        alert.addAction(UIAlertAction(title: "Cancle", style: UIAlertActionStyle.Cancel, handler: { [unowned self] action  -> Void in
+            self.isGamePause = true
         }))
         
         alert.addAction(UIAlertAction(title: "Restart", style: UIAlertActionStyle.Default, handler: { [unowned self] action -> Void in
@@ -335,10 +351,15 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     // The method will save the state for current in the future
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated);
+        
+        for ball in balls {
+            ball.velocity = breakItBehavior.clearLinearVelocityForBall(ball.view)
+        }
+        
+        isGamePause = true
     }
     
     // MARK: handle collision events
-    
     func startCollisionEvenObserver()
     {
         let center = NSNotificationCenter.defaultCenter()
@@ -386,11 +407,28 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
                 break
             }
         }
+        
+        if brickViews.isEmpty {
+            hintLabel.hidden = false
+            hintLabel.text = "Congratulations!!!"
+            
+            for ball in balls {
+                breakItBehavior.clearLinearVelocityForBall(ball.view)
+            }
+            
+            isGameOver = true
+        }
     }
     
     func finishGame()
     {
-        // TODO
+        hintLabel.hidden = false
+        hintLabel.text = "Oops!"
+        
+        for ball in balls {
+            breakItBehavior.clearLinearVelocityForBall(ball.view)
+        }
+        isGameOver = true
     }
     
     // remove observer

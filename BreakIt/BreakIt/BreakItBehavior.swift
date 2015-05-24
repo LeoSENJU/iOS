@@ -70,15 +70,28 @@ class BreakItBehavior: UIDynamicBehavior, UICollisionBehaviorDelegate {
         collider.addBoundaryWithIdentifier(name, fromPoint: fromPoint, toPoint: toPoint)
     }
     
-    // MARK: set and get ball status
+    // MARK: ball velocity utility functions
     func linearVelocityForBall(ball: UIDynamicItem) -> CGPoint
     {
         return breakItBehavior.linearVelocityForItem(ball)
     }
     
-    func setLinearVelocityForBall(velocity: CGPoint, ball: UIDynamicItem)
+    func setLinearVelocityForBall(ball: UIDynamicItem, velocity: CGPoint)
+    {
+        clearLinearVelocityForBall(ball)
+        addLinearVelocityForBall(ball, velocity: velocity)
+    }
+    
+    func addLinearVelocityForBall(ball: UIDynamicItem, velocity: CGPoint)
     {
         breakItBehavior.addLinearVelocity(velocity, forItem: ball)
+    }
+    
+    func clearLinearVelocityForBall(ball: UIDynamicItem) -> CGPoint
+    {
+        let velocity = linearVelocityForBall(ball)
+        addLinearVelocityForBall(ball ,velocity: CGPoint(x: -velocity.x, y: -velocity.y))
+        return velocity
     }
     
     // MARK: private functions to add and remove behavior items

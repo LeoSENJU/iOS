@@ -190,10 +190,23 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yFs-Ht-joI" customClass="BezierPathsView" customModule="BreakIt" customModuleProvider="target">
                                 <rect key="frame" x="16" y="20" width="568" height="531"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hint" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="O68-iH-Y2Q">
+                                        <rect key="frame" x="250" y="242" width="69" height="48"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="40"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="O68-iH-Y2Q" secondAttribute="centerX" id="J4j-9e-Mul"/>
+                                    <constraint firstAttribute="centerY" secondItem="O68-iH-Y2Q" secondAttribute="centerY" id="drp-Ro-SdH"/>
+                                </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="qem-h9-NlT" appends="YES" id="tWn-Y8-r0q"/>
+                                    <outletCollection property="gestureRecognizers" destination="HKF-HO-9OZ" appends="YES" id="BXX-71-zEj"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -208,6 +221,7 @@
                     <tabBarItem key="tabBarItem" systemItem="featured" id="Rrk-W9-7ro"/>
                     <connections>
                         <outlet property="gameView" destination="yFs-Ht-joI" id="i9J-N6-rvc"/>
+                        <outlet property="hintLabel" destination="O68-iH-Y2Q" id="ico-bV-uec"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f9m-t6-bTB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -216,6 +230,11 @@
                         <action selector="drag:" destination="f4y-e8-wxE" id="NeE-Vj-h8k"/>
                     </connections>
                 </panGestureRecognizer>
+                <tapGestureRecognizer id="HKF-HO-9OZ">
+                    <connections>
+                        <action selector="tap:" destination="f4y-e8-wxE" id="lkJ-9F-chf"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="494" y="-515"/>
         </scene>
