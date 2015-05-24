@@ -22,7 +22,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         static let TopBoundaryName = "BreakItGameTopBoundaryName"
         static let BottomBoundaryName = "BreakItGameBottomBoundaryName"
         
-        static let BlankHeight = CGFloat(10.0)
+        static let BlankHeight = CGFloat(20.0)
         
         static let NumberOfMaxBricksRow = 4
         static let NumberOfBricksPerRow = 5
@@ -30,12 +30,12 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         static let BrickFillColor = UIColor.purpleColor()
         static let BrickStrokeColor = UIColor.purpleColor()
         
-        static let BallRadius = CGFloat(10.0)
+        static let BallRadius = CGFloat(15.0)
         static let BallPathName = "BreakItGameBallPathName"
         static let BallInitVelocity = CGPoint(x: 0.0, y: -500.0)
         
-        static let PaddleWidth = CGFloat(50.0)
-        static let PaddleHeight = CGFloat(10.0)
+        static let PaddleWidth = CGFloat(70.0)
+        static let PaddleHeight = CGFloat(15.0)
         static let PaddlePathName = "BreakItGamePaddlePathName"
         static let PaddleFillColor = UIColor.blackColor()
         static let PaddleStrokeColor = UIColor.blackColor()
@@ -65,7 +65,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     }
     
     // MARK: restart game using the user default settings
-    // restart break it game using the user defaults
+    // start break it game using the user defaults
     func startGame()
     {
         var defaults = NSUserDefaults.standardUserDefaults()
@@ -114,14 +114,16 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     
     class Brick {
         var path: UIBezierPath
+        var view: UIView
         var name: String
         var row: Int
         var column: Int
         var fillColor: UIColor
         var strokeColor: UIColor
         
-        init(path: UIBezierPath, name: String, row: Int, column: Int, fillColor: UIColor, strokeColor: UIColor){
+        init(path: UIBezierPath, view: UIView, name: String, row: Int, column: Int, fillColor: UIColor, strokeColor: UIColor){
             self.path = path
+            self.view = view
             self.name = name
             self.row = row
             self.column = column
@@ -156,15 +158,16 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         {
             for j in 1...ConstantsForBreakItGame.NumberOfBricksPerRow
             {
-                let path = UIBezierPath(rect: CGRect(origin: CGPoint(x: CGFloat(j)*blank.width + CGFloat(j-1)*size.width, y: CGFloat(i)*blank.height + CGFloat(i-1)*size.height), size: size))
-                let name = ConstantsForBreakItGame.BrickPathName + ("\(i)_\(j)")
-                let fillColor = ConstantsForBreakItGame.BrickFillColor
-                let strokeColor = ConstantsForBreakItGame.BrickStrokeColor
+                let brickRect = CGRect(origin: CGPoint(x: CGFloat(j)*blank.width + CGFloat(j-1)*size.width, y: CGFloat(i)*blank.height + CGFloat(i-1)*size.height), size: size)
+                let path = UIBezierPath(rect: brickRect)
+                let view = UIView(frame: brickRect)
+                view.backgroundColor = ConstantsForBreakItGame.BrickFillColor
+                gameView.addSubview(view)
                 
-                brickViews.append(Brick(path: path, name: name, row: i, column: j, fillColor: fillColor, strokeColor: strokeColor))
+                let name = ConstantsForBreakItGame.BrickPathName + ("\(i)_\(j)")
                 
                 breakItBehavior.addBrick(path, named: name)
-                gameView.setPath(path, fillColor: fillColor, strokeColor: strokeColor, name: name)
+                brickViews.append(Brick(path: path, view: view, name: name, row: i, column: j, fillColor: ConstantsForBreakItGame.BrickFillColor, strokeColor: ConstantsForBreakItGame.BrickStrokeColor))
             }
             
         }
@@ -260,13 +263,16 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         let blank = brickBlank
         
         for brick in brickViews {
-            let path = UIBezierPath(rect: CGRect(origin: CGPoint(x: CGFloat(brick.column)*blank.width + CGFloat(brick.column-1)*size.width, y: CGFloat(brick.row)*blank.height + CGFloat(brick.row-1)*size.height), size: size))
+            let brickRect = CGRect(origin: CGPoint(x: CGFloat(brick.column)*blank.width + CGFloat(brick.column-1)*size.width, y: CGFloat(brick.row)*blank.height + CGFloat(brick.row-1)*size.height), size: size)
             
+            brick.view.frame = brickRect
+            gameView.addSubview(brick.view)
+
+            let path = UIBezierPath(rect: brickRect)
             brick.path = path
+            
             breakItBehavior.addBrick(path, named: brick.name)
-            gameView.setPath(path, fillColor: brick.fillColor, strokeColor: brick.strokeColor, name: brick.name)
         }
-        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -333,10 +339,18 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     
     func removeBrickWithName(name: String)
     {
-        for brick in brickViews {
-            if brick.name == name {
+        
+        for i in 0..<brickViews.count {
+            if brickViews[i].name == name {
                 breakItBehavior.removeBrick(name)
-                gameView.removePath(name)
+                let brick = brickViews.removeAtIndex(i) as Brick
+                
+                UIView.transitionWithView(gameView, duration: 0.5, options: UIViewAnimationOptions.CurveEaseOut, animations: {brick.view.alpha = 0.0}) {
+                    if $0 {
+                        brick.view.removeFromSuperview()
+                    }
+                }
+                
                 break
             }
         }
@@ -344,7 +358,6 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     
     func finishGame()
     {
-        
     }
     
     // remove observer
