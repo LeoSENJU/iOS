@@ -1,0 +1,27 @@
+/* Class = "UILabel"; text = "Bounciness"; ObjectID = "GGp-UL-RCu"; */
+"GGp-UL-RCu.text" = "反弹力";
+
+/* Class = "UILabel"; text = "Hint"; ObjectID = "O68-iH-Y2Q"; */
+"O68-iH-Y2Q.text" = "提示";
+
+/* Class = "UISegmentedControl"; Owp-6T-1wz.segmentTitles[0] = "One"; ObjectID = "Owp-6T-1wz"; */
+"Owp-6T-1wz.segmentTitles[0]" = "一";
+
+/* Class = "UISegmentedControl"; Owp-6T-1wz.segmentTitles[1] = "Two"; ObjectID = "Owp-6T-1wz"; */
+"Owp-6T-1wz.segmentTitles[1]" = "二";
+
+/* Class = "UISegmentedControl"; Owp-6T-1wz.segmentTitles[2] = "Three"; ObjectID = "Owp-6T-1wz"; */
+"Owp-6T-1wz.segmentTitles[2]" = "三";
+
+/* Class = "UILabel"; text = "Bouncing balls"; ObjectID = "ZB4-k7-ICu"; */
+"ZB4-k7-ICu.text" = "球个数";
+
+/* Class = "UILabel"; text = "Row of Bricks: 1"; ObjectID = "bkf-xW-fSL"; */
+"bkf-xW-fSL.text" = "砖块行数：1";
+
+/* Class = "UITabBarItem"; title = "Setting"; ObjectID = "i2d-XY-EsN"; */
+"i2d-XY-EsN.title" = "设置";
+
+/* Class = "UILabel"; text = "Grativation pull"; ObjectID = "q1t-m9-NxW"; */
+"q1t-m9-NxW.text" = "重力加速";
+

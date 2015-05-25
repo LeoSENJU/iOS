@@ -43,7 +43,8 @@ class SettingViewController: UITableViewController {
             if let row = self.rowOfBricks
             {
                 rowOfBricksStepper.value = Double(row)
-                brickRowLabel.text = "Row of Bricks: \(row)"
+                let rowOfBrickHint = NSLocalizedString("Row of Bricks: %d", comment: "row of bricks in the label")
+                brickRowLabel.text = String.localizedStringWithFormat(rowOfBrickHint, row)
             }
             
         }

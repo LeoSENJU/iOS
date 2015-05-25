@@ -62,7 +62,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         didSet {
             if self.isGamePause && !isGameOver {
                 self.hintLabel.hidden = false
-                self.hintLabel.text = "Continue?"
+                self.hintLabel.text = NSLocalizedString("Continue?", comment: "continue hint of the game after ")
             }
         }
     }

@@ -1,0 +1,6 @@
+/* continue hint of the game after */
+"Continue?" = "继续？";
+
+/* row of bricks in the label */
+"Row of Bricks: %d" = "砖块行数：%d";
+

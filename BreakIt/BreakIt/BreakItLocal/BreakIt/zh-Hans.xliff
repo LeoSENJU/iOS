@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="BreakIt/Base.lproj/LaunchScreen.xib" source-language="en" datatype="plaintext" target-language="zh-Hans">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="6.3.1" build-num="6D1002"/>
+    </header>
+    <body>
+      <trans-unit id="FCy-0I-WfL.text">
+        <source>It</source>
+        <target>It</target>
+        <note>Class = "UILabel"; text = "It"; ObjectID = "FCy-0I-WfL";</note>
+      </trans-unit>
+      <trans-unit id="jWJ-4r-OAt.text">
+        <source>Break</source>
+        <target>Break</target>
+        <note>Class = "UILabel"; text = "Break"; ObjectID = "jWJ-4r-OAt";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="BreakIt/Base.lproj/Main.storyboard" source-language="en" datatype="plaintext" target-language="zh-Hans">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="6.3.1" build-num="6D1002"/>
+    </header>
+    <body>
+      <trans-unit id="GGp-UL-RCu.text">
+        <source>Bounciness</source>
+        <target>反弹力</target>
+        <note>Class = "UILabel"; text = "Bounciness"; ObjectID = "GGp-UL-RCu";</note>
+      </trans-unit>
+      <trans-unit id="O68-iH-Y2Q.text">
+        <source>Hint</source>
+        <target>提示</target>
+        <note>Class = "UILabel"; text = "Hint"; ObjectID = "O68-iH-Y2Q";</note>
+      </trans-unit>
+      <trans-unit id="Owp-6T-1wz.segmentTitles[0]">
+        <source>One</source>
+        <target>一</target>
+        <note>Class = "UISegmentedControl"; Owp-6T-1wz.segmentTitles[0] = "One"; ObjectID = "Owp-6T-1wz";</note>
+      </trans-unit>
+      <trans-unit id="Owp-6T-1wz.segmentTitles[1]">
+        <source>Two</source>
+        <target>二</target>
+        <note>Class = "UISegmentedControl"; Owp-6T-1wz.segmentTitles[1] = "Two"; ObjectID = "Owp-6T-1wz";</note>
+      </trans-unit>
+      <trans-unit id="Owp-6T-1wz.segmentTitles[2]">
+        <source>Three</source>
+        <target>三</target>
+        <note>Class = "UISegmentedControl"; Owp-6T-1wz.segmentTitles[2] = "Three"; ObjectID = "Owp-6T-1wz";</note>
+      </trans-unit>
+      <trans-unit id="ZB4-k7-ICu.text">
+        <source>Bouncing balls</source>
+        <target>球个数</target>
+        <note>Class = "UILabel"; text = "Bouncing balls"; ObjectID = "ZB4-k7-ICu";</note>
+      </trans-unit>
+      <trans-unit id="bkf-xW-fSL.text">
+        <source>Row of Bricks: 1</source>
+        <target>砖块行数：1</target>
+        <note>Class = "UILabel"; text = "Row of Bricks: 1"; ObjectID = "bkf-xW-fSL";</note>
+      </trans-unit>
+      <trans-unit id="i2d-XY-EsN.title">
+        <source>Setting</source>
+        <target>设置</target>
+        <note>Class = "UITabBarItem"; title = "Setting"; ObjectID = "i2d-XY-EsN";</note>
+      </trans-unit>
+      <trans-unit id="q1t-m9-NxW.text">
+        <source>Grativation pull</source>
+        <target>重力加速</target>
+        <note>Class = "UILabel"; text = "Grativation pull"; ObjectID = "q1t-m9-NxW";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="BreakIt/Info.plist" source-language="en" datatype="plaintext" target-language="zh-Hans">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="6.3.1" build-num="6D1002"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+        <target>打砖块</target>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>1.0</source>
+        <target>1.0</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="BreakIt/Localizable.strings" source-language="en" datatype="plaintext" target-language="zh-Hans">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="6.3.1" build-num="6D1002"/>
+    </header>
+    <body>
+      <trans-unit id="Continue?">
+        <source>Continue?</source>
+        <target>继续？</target>
+        <note>continue hint of the game after</note>
+      </trans-unit>
+      <trans-unit id="Row of Bricks: %d">
+        <source>Row of Bricks: %d</source>
+        <target>砖块行数：%d</target>
+        <note>row of bricks in the label</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="BreakItTests/Info.plist" source-language="en" datatype="plaintext" target-language="zh-Hans">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="6.3.1" build-num="6D1002"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>1.0</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

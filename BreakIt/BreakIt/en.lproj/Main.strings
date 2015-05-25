@@ -1,0 +1,27 @@
+
+/* Class = "UILabel"; text = "Bounciness"; ObjectID = "GGp-UL-RCu"; */
+"GGp-UL-RCu.text" = "Bounciness";
+
+/* Class = "UILabel"; text = "Hint"; ObjectID = "O68-iH-Y2Q"; */
+"O68-iH-Y2Q.text" = "Hint";
+
+/* Class = "UISegmentedControl"; Owp-6T-1wz.segmentTitles[0] = "One"; ObjectID = "Owp-6T-1wz"; */
+"Owp-6T-1wz.segmentTitles[0]" = "One";
+
+/* Class = "UISegmentedControl"; Owp-6T-1wz.segmentTitles[1] = "Two"; ObjectID = "Owp-6T-1wz"; */
+"Owp-6T-1wz.segmentTitles[1]" = "Two";
+
+/* Class = "UISegmentedControl"; Owp-6T-1wz.segmentTitles[2] = "Three"; ObjectID = "Owp-6T-1wz"; */
+"Owp-6T-1wz.segmentTitles[2]" = "Three";
+
+/* Class = "UILabel"; text = "Bouncing balls"; ObjectID = "ZB4-k7-ICu"; */
+"ZB4-k7-ICu.text" = "Bouncing balls";
+
+/* Class = "UILabel"; text = "Row of Bricks: 1"; ObjectID = "bkf-xW-fSL"; */
+"bkf-xW-fSL.text" = "Row of Bricks: 1";
+
+/* Class = "UITabBarItem"; title = "Setting"; ObjectID = "i2d-XY-EsN"; */
+"i2d-XY-EsN.title" = "Setting";
+
+/* Class = "UILabel"; text = "Grativation pull"; ObjectID = "q1t-m9-NxW"; */
+"q1t-m9-NxW.text" = "Grativation pull";

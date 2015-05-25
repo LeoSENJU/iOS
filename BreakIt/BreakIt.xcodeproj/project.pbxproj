@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F152E331B13644C00F214E1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2F152E351B13644C00F214E1 /* InfoPlist.strings */; };
+		2F152E381B13644C00F214E1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2F152E3A1B13644C00F214E1 /* InfoPlist.strings */; };
+		2F152E3D1B1369C600F214E1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2F152E3F1B1369C600F214E1 /* Localizable.strings */; };
 		2F7EFD691B0250C200C3BAE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7EFD681B0250C200C3BAE0 /* AppDelegate.swift */; };
 		2F7EFD6E1B0250C200C3BAE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F7EFD6C1B0250C200C3BAE0 /* Main.storyboard */; };
 		2F7EFD701B0250C200C3BAE0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F7EFD6F1B0250C200C3BAE0 /* Images.xcassets */; };
@@ -30,6 +33,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F152E2D1B13624600F214E1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		2F152E2E1B13624600F214E1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		2F152E341B13644C00F214E1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		2F152E391B13644C00F214E1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		2F152E3E1B1369C600F214E1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		2F7EFD631B0250C200C3BAE0 /* BreakIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BreakIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F7EFD671B0250C200C3BAE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F7EFD681B0250C200C3BAE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +107,8 @@
 		2F7EFD661B0250C200C3BAE0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2F152E3F1B1369C600F214E1 /* Localizable.strings */,
+				2F152E351B13644C00F214E1 /* InfoPlist.strings */,
 				2F7EFD711B0250C200C3BAE0 /* LaunchScreen.xib */,
 				2F7EFD6F1B0250C200C3BAE0 /* Images.xcassets */,
 				2F7EFD681B0250C200C3BAE0 /* AppDelegate.swift */,
@@ -119,6 +129,7 @@
 		2F7EFD7C1B0250C200C3BAE0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2F152E3A1B13644C00F214E1 /* InfoPlist.strings */,
 				2F7EFD7D1B0250C200C3BAE0 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -204,7 +215,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F152E3D1B1369C600F214E1 /* Localizable.strings in Resources */,
 				2F7EFD6E1B0250C200C3BAE0 /* Main.storyboard in Resources */,
+				2F152E331B13644C00F214E1 /* InfoPlist.strings in Resources */,
 				2F7EFD731B0250C200C3BAE0 /* LaunchScreen.xib in Resources */,
 				2F7EFD701B0250C200C3BAE0 /* Images.xcassets in Resources */,
 			);
@@ -214,6 +227,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F152E381B13644C00F214E1 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,10 +266,35 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		2F152E351B13644C00F214E1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2F152E341B13644C00F214E1 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2F152E3A1B13644C00F214E1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2F152E391B13644C00F214E1 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2F152E3F1B1369C600F214E1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2F152E3E1B1369C600F214E1 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		2F7EFD6C1B0250C200C3BAE0 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2F7EFD6D1B0250C200C3BAE0 /* Base */,
+				2F152E2D1B13624600F214E1 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -264,6 +303,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2F7EFD721B0250C200C3BAE0 /* Base */,
+				2F152E2E1B13624600F214E1 /* zh-Hans */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
