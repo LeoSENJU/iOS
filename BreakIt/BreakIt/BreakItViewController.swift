@@ -352,8 +352,10 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated);
         
-        for ball in balls {
-            ball.velocity = breakItBehavior.clearLinearVelocityForBall(ball.view)
+        if !isGamePause {
+            for ball in balls {
+                ball.velocity = breakItBehavior.clearLinearVelocityForBall(ball.view)
+            }
         }
         
         isGamePause = true
