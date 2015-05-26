@@ -350,13 +350,13 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     
     func currentGameResetAlert()
     {
-        var alert = UIAlertController(title: "Restart game", message: "Your game setting has been changed, want to restart game now?", preferredStyle: UIAlertControllerStyle.Alert)
+        var alert = UIAlertController(title: NSLocalizedString("Restart game", comment: "alert title of resrat the game"), message: NSLocalizedString("Your game setting has been changed, want to restart game now?", comment: "context of restart game alert controller") , preferredStyle: UIAlertControllerStyle.Alert)
         
-        alert.addAction(UIAlertAction(title: "Cancle", style: UIAlertActionStyle.Cancel, handler: { [unowned self] action  -> Void in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancle", comment: "title of cancle button in restart alert controller") , style: UIAlertActionStyle.Cancel, handler: { [unowned self] action  -> Void in
             self.isGamePause = true
         }))
         
-        alert.addAction(UIAlertAction(title: "Restart", style: UIAlertActionStyle.Default, handler: { [unowned self] action -> Void in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Restart", comment: "title of restart button in restart alert controller"), style: UIAlertActionStyle.Default, handler: { [unowned self] action -> Void in
             // restart the game using the new user game setting
             self.startGame()
         }))
@@ -427,7 +427,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         
         if brickViews.isEmpty {
             hintLabel.hidden = false
-            hintLabel.text = "Congratulations!!!"
+            hintLabel.text = NSLocalizedString("Congratulations!!!", comment: "Hint when user break all the bricks")
             
             for ball in balls {
                 breakItBehavior.clearLinearVelocityForBall(ball.view)
@@ -440,7 +440,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     func finishGame()
     {
         hintLabel.hidden = false
-        hintLabel.text = "Oops!"
+        hintLabel.text = NSLocalizedString("Oops!", comment: "Hint when user ball hit the bootom")
         
         for ball in balls {
             breakItBehavior.clearLinearVelocityForBall(ball.view)
