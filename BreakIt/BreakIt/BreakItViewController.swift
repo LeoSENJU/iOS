@@ -85,10 +85,25 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         isGamePause = false
         
         var defaults = NSUserDefaults.standardUserDefaults()
+        var ballNumbers = defaults.integerForKey(SettingViewController.BreakItGameUserDefaultsKey.NumberOfBouncingBallsKey)
+        if ballNumbers == 0 {
+            ballNumbers = 1
+            defaults.setInteger(ballNumbers, forKey: SettingViewController.BreakItGameUserDefaultsKey.NumberOfBouncingBallsKey)
+        }
         
-        initBall(defaults.integerForKey(SettingViewController.BreakItGameUserDefaultsKey.NumberOfBouncingBallsKey))
+        var brickRows = defaults.integerForKey(SettingViewController.BreakItGameUserDefaultsKey.RowOfBricksKey)
+        if brickRows == 0 {
+            brickRows = 1
+            defaults.setInteger(brickRows, forKey: SettingViewController.BreakItGameUserDefaultsKey.RowOfBricksKey)
+        }
+        
+        
+        initBall(ballNumbers)
         initPaddle()
-        initBrick(defaults.integerForKey(SettingViewController.BreakItGameUserDefaultsKey.RowOfBricksKey))
+        
+        
+        
+        initBrick(brickRows)
     }
     
     class Ball {
