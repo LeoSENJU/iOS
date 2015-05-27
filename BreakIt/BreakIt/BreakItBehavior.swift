@@ -94,6 +94,10 @@ class BreakItBehavior: UIDynamicBehavior, UICollisionBehaviorDelegate {
         return velocity
     }
     
+    func setBounciness(bouciness: Double) {
+        breakItBehavior.elasticity = CGFloat(bouciness)
+    }
+    
     // MARK: private functions to add and remove behavior items
     private func addBehaviorItem(item: UIView)
     {

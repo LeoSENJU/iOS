@@ -97,12 +97,11 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
             defaults.setInteger(brickRows, forKey: SettingViewController.BreakItGameUserDefaultsKey.RowOfBricksKey)
         }
         
+        var bounciness = defaults.doubleForKey(SettingViewController.BreakItGameUserDefaultsKey.BouncinessKey)
+        
         
         initBall(ballNumbers)
         initPaddle()
-        
-        
-        
         initBrick(brickRows)
     }
     
