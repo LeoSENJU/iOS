@@ -31,6 +31,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         static let BrickPathName = "BreakItGameBrickPathName"
         static let BrickFillColor = UIColor.purpleColor()
         static let BrickStrokeColor = UIColor.purpleColor()
+        static let BrickSpecialType = [1:UIColor.redColor(), 2:UIColor.greenColor(), 3:UIColor.yellowColor()]
         
         static let BallRadius = CGFloat(15.0)
         static let BallPathName = "BreakItGameBallPathName"
@@ -171,6 +172,8 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         var fillColor: UIColor
         var strokeColor: UIColor
         
+        var type: Int = 0
+        
         init(path: UIBezierPath, view: UIView, name: String, row: Int, column: Int, fillColor: UIColor, strokeColor: UIColor){
             self.path = path
             self.view = view
@@ -225,7 +228,19 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
                 let name = ConstantsForBreakItGame.BrickPathName + ("\(i)_\(j)")
                 
                 breakItBehavior.addBrick(path, named: name)
-                brickViews.append(Brick(path: path, view: view, name: name, row: i, column: j, fillColor: ConstantsForBreakItGame.BrickFillColor, strokeColor: ConstantsForBreakItGame.BrickStrokeColor))
+                
+                let brick = Brick(path: path, view: view, name: name, row: i, column: j, fillColor: ConstantsForBreakItGame.BrickFillColor, strokeColor: ConstantsForBreakItGame.BrickStrokeColor)
+                
+                // 20% of being the special brick
+                let brickType = Int(arc4random() % UInt32(ConstantsForBreakItGame.BrickSpecialType.count + Int(1)))
+                
+                if brickType > 0 {
+                    view.backgroundColor = ConstantsForBreakItGame.BrickSpecialType[brickType]
+                    brick.fillColor = ConstantsForBreakItGame.BrickSpecialType[brickType]!
+                    brick.strokeColor = ConstantsForBreakItGame.BrickSpecialType[brickType]!
+                }
+                
+                brickViews.append(brick)
             }
             
         }
