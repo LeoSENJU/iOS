@@ -107,11 +107,14 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     }
     
     class Ball {
+        var name: String
+        
         var view: UIView
         var velocity: CGPoint
         
-        init(view: UIView)
+        init(view: UIView, name: String)
         {
+            self.name = name
             self.view = view
             var angle = (Double(arc4random() % UINT32_MAX) - 0.5) * M_PI_2
             self.velocity = CGPoint(x: sin(angle)*ConstantsForBreakItGame.BallDefaultVelocity, y: cos(angle)*ConstantsForBreakItGame.BallDefaultVelocity)
@@ -124,7 +127,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     {
         if !balls.isEmpty {
             for ball in balls {
-                breakItBehavior.removeBall(ball.view)
+                breakItBehavior.removeBall(ball.view, named: ball.name)
                 ball.view.removeFromSuperview()
             }
             balls.removeAll(keepCapacity: false)
@@ -142,9 +145,10 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
             ballView.layer.borderWidth = 1
             ballView.layer.backgroundColor = ConstantsForBreakItGame.BallFillColor.CGColor
             
-            let ball = Ball(view: ballView)
+            let name = ConstantsForBreakItGame.BallPathName + String(i)
+            let ball = Ball(view: ballView, name: name)
             balls.append(ball)
-            breakItBehavior.addBall(ballView)
+            breakItBehavior.addBall(ballView, named: name)
             breakItBehavior.setLinearVelocityForBall(ballView, velocity: ball.velocity)
         }
     }
@@ -237,10 +241,12 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
                 
                 // 10% percent of type 1, 10% percent of type 2
                 if brickType <= 10 {
+                    brick.type = 1
                     view.backgroundColor = ConstantsForBreakItGame.BrickSpecialType[1]
                     brick.fillColor = ConstantsForBreakItGame.BrickSpecialType[1]!
                     brick.strokeColor = ConstantsForBreakItGame.BrickSpecialType[1]!
                 } else if brickType <= 20 {
+                    brick.type = 2
                     view.backgroundColor = ConstantsForBreakItGame.BrickSpecialType[2]
                     brick.fillColor = ConstantsForBreakItGame.BrickSpecialType[2]!
                     brick.strokeColor = ConstantsForBreakItGame.BrickSpecialType[2]!
@@ -432,8 +438,19 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         
         for i in 0..<brickViews.count {
             if brickViews[i].name == name {
+                
                 breakItBehavior.removeBrick(name)
                 let brick = brickViews.removeAtIndex(i) as Brick
+                
+                // special brick type 1, add balls
+                if brick.type == 1 {
+                    
+                }
+                
+                // special brick type 2, slow down velocity
+                if brick.type == 2 {
+                    
+                }
                 
                 UIView.transitionWithView(gameView, duration: 0.5, options: UIViewAnimationOptions.CurveEaseOut, animations: {brick.view.alpha = 0.0}) {
                     if $0 {

@@ -37,15 +37,15 @@ class BreakItBehavior: UIDynamicBehavior, UICollisionBehaviorDelegate {
     // MARK: Set and remove items
     
     // For the time being ball, paddle and bricks are implemented separated
-    func addBall(ball: UIView)
+    func addBall(ball: UIView, named name: String)
     {
-        removeBall(ball)
-        addBehaviorItem(ball)
+        removeBall(ball, named: name)
+        addBehaviorItem(ball, named: name)
     }
     
-    func removeBall(ball: UIView)
+    func removeBall(ball: UIView, named name: String)
     {
-        removeBehaviorItem(ball)
+        removeBehaviorItem(ball, named: name)
     }
     
     func setPaddle(path: UIBezierPath, named name: String)
@@ -99,17 +99,22 @@ class BreakItBehavior: UIDynamicBehavior, UICollisionBehaviorDelegate {
     }
     
     // MARK: private functions to add and remove behavior items
-    private func addBehaviorItem(item: UIView)
+    
+    var itemList = [String: UIDynamicItem]()
+    
+    private func addBehaviorItem(item: UIView, named name: String)
     {
         dynamicAnimator?.referenceView?.addSubview(item)
         collider.addItem(item)
         breakItBehavior.addItem(item)
+        itemList[name] = item
     }
     
-    private func removeBehaviorItem(item: UIView)
+    private func removeBehaviorItem(item: UIView, named name: String)
     {
         collider.removeItem(item)
         breakItBehavior.removeItem(item)
+        itemList.removeValueForKey(name)
     }
     
     // MARK: manage collision behavior between ball/bricks and ball/boundaries
@@ -117,8 +122,19 @@ class BreakItBehavior: UIDynamicBehavior, UICollisionBehaviorDelegate {
         //println(identifier)
         let identifieropt: NSCopying? = identifier
         if let name = identifieropt as? String {
+            
+            var ballName = ""
+            
+            for (k, v) in itemList {
+                if v === item {
+                    ballName = k
+                }
+            }
+            
+            //println(ballName)
+            
             if name.hasPrefix(BreakItViewController.ConstantsForBreakItGame.BrickPathName) {
-                NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: BreakItViewController.ConstantsForBreakItGame.BrickCollisionNotification, object: nil, userInfo: [BreakItViewController.ConstantsForBreakItGame.BrickPathName : name]))
+                NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: BreakItViewController.ConstantsForBreakItGame.BrickCollisionNotification, object: nil, userInfo: [BreakItViewController.ConstantsForBreakItGame.BrickPathName : name, BreakItViewController.ConstantsForBreakItGame.BallPathName : ballName]))
             }
             
             if name == BreakItViewController.ConstantsForBreakItGame.BottomBoundaryName {
