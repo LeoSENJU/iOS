@@ -131,10 +131,8 @@ class BreakItBehavior: UIDynamicBehavior, UICollisionBehaviorDelegate {
                 }
             }
             
-            //println(ballName)
-            
             if name.hasPrefix(BreakItViewController.ConstantsForBreakItGame.BrickPathName) {
-                NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: BreakItViewController.ConstantsForBreakItGame.BrickCollisionNotification, object: nil, userInfo: [BreakItViewController.ConstantsForBreakItGame.BrickPathName : name, BreakItViewController.ConstantsForBreakItGame.BallPathName : ballName]))
+                NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: BreakItViewController.ConstantsForBreakItGame.BrickCollisionNotification, object: nil, userInfo: [BreakItViewController.ConstantsForBreakItGame.BrickPathName : name, BreakItViewController.ConstantsForBreakItGame.BallPathName : ballName, "x":p.x, "y":p.y]))
             }
             
             if name == BreakItViewController.ConstantsForBreakItGame.BottomBoundaryName {

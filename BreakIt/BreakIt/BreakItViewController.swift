@@ -37,6 +37,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         static let BallPathName = "BreakItGameBallPathName"
         static let BallDefaultVelocity = 500.0
         static let BallFillColor = UIColor.blueColor()
+        static let BallSpecialFillColor = UIColor.brownColor()
         
         static let PaddleWidth = CGFloat(100.0)
         static let PaddleHeight = CGFloat(15.0)
@@ -235,8 +236,6 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
                 
                 let brick = Brick(path: path, view: view, name: name, row: i, column: j, fillColor: ConstantsForBreakItGame.BrickFillColor, strokeColor: ConstantsForBreakItGame.BrickStrokeColor)
                 
-                // 20% of being the special brick
-                //let brickType = Int(arc4random() % UInt32(ConstantsForBreakItGame.BrickSpecialType.count + Int(1)))
                 let brickType = Int(arc4random() % 100)
                 
                 // 10% percent of type 1, 10% percent of type 2
@@ -403,6 +402,8 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     }
     
     // MARK: handle collision events
+    var collidePoint: CGPoint = CGPointZero
+    
     func startCollisionEvenObserver()
     {
         let center = NSNotificationCenter.defaultCenter()
@@ -411,7 +412,9 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         brickCollsionObserver = center.addObserverForName(ConstantsForBreakItGame.BrickCollisionNotification, object: nil, queue: queue) {
             [unowned self] notification in
             if let name = notification.userInfo?[ConstantsForBreakItGame.BrickPathName] as? String {
-                self.removeBrickWithName(name)
+                let ballName = notification.userInfo?[ConstantsForBreakItGame.BallPathName] as! String
+                self.collidePoint = CGPoint(x: notification.userInfo?["x"] as! CGFloat, y: notification.userInfo?["y"] as! CGFloat)
+                self.removeBrickWithName(name, collideBallName: ballName)
             }
         }
         
@@ -433,7 +436,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         }
     }
     
-    func removeBrickWithName(name: String)
+    func removeBrickWithName(name: String, collideBallName: String)
     {
         
         for i in 0..<brickViews.count {
@@ -442,15 +445,20 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
                 breakItBehavior.removeBrick(name)
                 let brick = brickViews.removeAtIndex(i) as Brick
                 
-                // special brick type 1, add balls
-                if brick.type == 1 {
+                if brick.type != 0 {
                     
+                    // special brick type 1, add balls
+                    if brick.type == 1 {
+                        addSpecialBall(collideBallName)
+                    }
+                    
+                    // special brick type 2, slow down game speed
+                    if brick.type == 2 {
+                        slowDownGameSpeed()
+                    }
+
                 }
                 
-                // special brick type 2, slow down velocity
-                if brick.type == 2 {
-                    
-                }
                 
                 UIView.transitionWithView(gameView, duration: 0.5, options: UIViewAnimationOptions.CurveEaseOut, animations: {brick.view.alpha = 0.0}) {
                     if $0 {
@@ -472,6 +480,49 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
             
             isGameOver = true
         }
+    }
+    
+    func addSpecialBall(ballName: String)
+    {
+        var hitBall: Ball!
+        
+        for ball in balls {
+            if ball.name == ballName
+            {
+                hitBall = ball
+                break
+            }
+        }
+        
+        if let ball = hitBall {
+            ball.velocity = breakItBehavior.linearVelocityForBall(ball.view)
+            //println(ball.velocity)
+            
+            let ballOrigin = CGPoint(x: ball.view.frame.origin.x + ball.view.frame.width * (ball.velocity.x > 0 ? 1 : -1),
+                                      y: ball.view.frame.origin.y + ball.view.frame.height * (ball.velocity.y > 0 ? 1 : -1))
+            
+            var ballFrame = CGRect(origin: ballOrigin, size: ball.view.frame.size)
+            let ballView = UIView(frame: ballFrame)
+            
+            ballView.layer.cornerRadius = ConstantsForBreakItGame.BallRadius
+            ballView.clipsToBounds = true
+            ballView.layer.borderColor = ConstantsForBreakItGame.BallSpecialFillColor.CGColor
+            ballView.layer.borderWidth = 1
+            ballView.layer.backgroundColor = ConstantsForBreakItGame.BallSpecialFillColor.CGColor
+            
+            let name = ConstantsForBreakItGame.BallPathName + String(balls.count)
+            let b = Ball(view: ballView, name: name)
+            balls.append(b)
+            breakItBehavior.addBall(ballView, named: name)
+            breakItBehavior.setLinearVelocityForBall(ballView, velocity: CGPoint(x: -ball.velocity.x, y: -ball.velocity.y))
+        }
+        
+        
+    }
+    
+    func slowDownGameSpeed()
+    {
+        
     }
     
     func finishGame()
