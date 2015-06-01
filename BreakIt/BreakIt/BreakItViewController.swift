@@ -71,6 +71,8 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        gameView.backgroundColor = UIColor.clearColor()
         animator.addBehavior(breakItBehavior)
         
         startCollisionEvenObserver()
@@ -82,6 +84,8 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     // start break it game using the user defaults
     func startGame()
     {
+        gameView.superview?.backgroundColor = UIColor.whiteColor()
+        
         hintLabel.hidden = true
         isGameOver = false
         isGamePause = false
@@ -370,6 +374,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         {
             currentGameResetAlert()
         }
+        
         defaults.setBool(false, forKey: SettingViewController.BreakItGameUserDefaultsKey.IsSettingEdited)
     }
     
@@ -395,6 +400,12 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         if !isGamePause {
             for ball in balls {
                 ball.velocity = breakItBehavior.clearLinearVelocityForBall(ball.view)
+                
+                if isSlow {
+                    ball.velocity.x = ball.velocity.x *  CGFloat(2)
+                    ball.velocity.y = ball.velocity.y *  CGFloat(2)
+                }
+                
             }
         }
         
@@ -496,7 +507,6 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         
         if let ball = hitBall {
             ball.velocity = breakItBehavior.linearVelocityForBall(ball.view)
-            //println(ball.velocity)
             
             let ballOrigin = CGPoint(x: ball.view.frame.origin.x + ball.view.frame.width * (ball.velocity.x > 0 ? 1 : -1),
                                       y: ball.view.frame.origin.y + ball.view.frame.height * (ball.velocity.y > 0 ? 1 : -1))
@@ -520,9 +530,47 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         
     }
     
+    
+    
+    // slow the velocity of the balls & set background to be gray
+    
+    let animateDuration = 2.0
+    
+    var isSlow = false
+    
     func slowDownGameSpeed()
     {
+        if !isSlow {
+            for ball in balls {
+                let v = breakItBehavior.linearVelocityForBall(ball.view)
+                breakItBehavior.setLinearVelocityForBall(ball.view, velocity: CGPoint(x: v.x / CGFloat(2), y: v.y / CGFloat(2)))
+            }
+            
+            UIView.animateWithDuration( animateDuration,
+                delay: 0.0,
+                options: UIViewAnimationOptions.AllowUserInteraction,
+                animations: { [unowned self] in
+                    self.gameView.superview?.backgroundColor = UIColor.grayColor()
+                }) { (value: Bool) -> Void in
+            }
+            UIView.animateWithDuration(animateDuration,
+                delay: animateDuration,
+                options: UIViewAnimationOptions.AllowUserInteraction,
+                animations: { [unowned self] in
+                    self.gameView.superview?.backgroundColor = UIColor.whiteColor()
+                }) { [unowned self] (value: Bool) -> Void in
+                    
+                    for ball in self.balls {
+                        let v = self.breakItBehavior.linearVelocityForBall(ball.view)
+                        self.breakItBehavior.setLinearVelocityForBall(ball.view, velocity: CGPoint(x: v.x * CGFloat(2), y: v.y * CGFloat(2)))
+                    }
+                    
+                    self.isSlow = false
+            }
+        }
         
+        isSlow = true
+
     }
     
     func finishGame()
