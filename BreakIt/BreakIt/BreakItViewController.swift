@@ -39,8 +39,8 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         static let BallFillColor = UIColor.blueColor()
         static let BallSpecialFillColor = UIColor.brownColor()
         
-        static let PaddleWidth = CGFloat(100.0)
-        static let PaddleHeight = CGFloat(15.0)
+        static let PaddleWidth = CGFloat(80.0)
+        static let PaddleHeight = CGFloat(30.0)
         static let PaddlePathName = "BreakItGamePaddlePathName"
         static let PaddleFillColor = UIColor.blackColor()
         static let PaddleStrokeColor = UIColor.blackColor()
@@ -160,7 +160,8 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     
     var paddleOriginPoint: CGPoint? {
         didSet {
-            let path = UIBezierPath(rect: CGRect(origin: self.paddleOriginPoint!, size: CGSize(width: ConstantsForBreakItGame.PaddleWidth, height: ConstantsForBreakItGame.PaddleHeight)))
+            //let path = UIBezierPath(rect: CGRect(origin: self.paddleOriginPoint!, size: CGSize(width: ConstantsForBreakItGame.PaddleWidth, height: ConstantsForBreakItGame.PaddleHeight)))
+            let path = UIBezierPath(ovalInRect: CGRect(origin: self.paddleOriginPoint!, size: CGSize(width: ConstantsForBreakItGame.PaddleWidth, height: ConstantsForBreakItGame.PaddleHeight)))
             
             breakItBehavior.setPaddle(path, named: ConstantsForBreakItGame.PaddlePathName)
             gameView.setPath(path, fillColor: ConstantsForBreakItGame.PaddleFillColor, strokeColor: ConstantsForBreakItGame.PaddleStrokeColor, name: ConstantsForBreakItGame.PaddlePathName)
