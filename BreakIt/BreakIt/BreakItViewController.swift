@@ -40,7 +40,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         static let BallSpecialFillColor = UIColor.brownColor()
         
         static let PaddleWidth = CGFloat(80.0)
-        static let PaddleHeight = CGFloat(30.0)
+        static let PaddleHeight = CGFloat(20.0)
         static let PaddlePathName = "BreakItGamePaddlePathName"
         static let PaddleFillColor = UIColor.blackColor()
         static let PaddleStrokeColor = UIColor.blackColor()
@@ -104,6 +104,9 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         }
         
         var bounciness = defaults.doubleForKey(SettingViewController.BreakItGameUserDefaultsKey.BouncinessKey)
+        breakItBehavior.setBounciness(bounciness)
+        
+        isPaddingOvel = defaults.boolForKey(SettingViewController.BreakItGameUserDefaultsKey.PaddingStateKey)
         
         
         initBall(ballNumbers)
@@ -158,12 +161,20 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         }
     }
     
+    var isPaddingOvel: Bool? = false
     var paddleOriginPoint: CGPoint? {
         didSet {
-            //let path = UIBezierPath(rect: CGRect(origin: self.paddleOriginPoint!, size: CGSize(width: ConstantsForBreakItGame.PaddleWidth, height: ConstantsForBreakItGame.PaddleHeight)))
-            let path = UIBezierPath(ovalInRect: CGRect(origin: self.paddleOriginPoint!, size: CGSize(width: ConstantsForBreakItGame.PaddleWidth, height: ConstantsForBreakItGame.PaddleHeight)))
+            let rect = CGRect(origin: self.paddleOriginPoint!, size: CGSize(width: ConstantsForBreakItGame.PaddleWidth, height: ConstantsForBreakItGame.PaddleHeight))
             
-            breakItBehavior.setPaddle(path, named: ConstantsForBreakItGame.PaddlePathName)
+            var path: UIBezierPath? = nil;
+            
+            if isPaddingOvel! {
+                path = UIBezierPath(ovalInRect: rect)
+            } else {
+                path = UIBezierPath(rect: rect)
+            }
+            
+            breakItBehavior.setPaddle(path!, named: ConstantsForBreakItGame.PaddlePathName)
             gameView.setPath(path, fillColor: ConstantsForBreakItGame.PaddleFillColor, strokeColor: ConstantsForBreakItGame.PaddleStrokeColor, name: ConstantsForBreakItGame.PaddlePathName)
         }
     }
@@ -348,7 +359,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         
     }
     
-    // Brick is the UIview
+    // Brick is the UIView
     func setBricksStatus()
     {
         let size = brickSize
@@ -527,11 +538,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
             breakItBehavior.addBall(ballView, named: name)
             breakItBehavior.setLinearVelocityForBall(ballView, velocity: CGPoint(x: -ball.velocity.x, y: -ball.velocity.y))
         }
-        
-        
     }
-    
-    
     
     // slow the velocity of the balls & set background to be gray
     

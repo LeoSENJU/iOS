@@ -49,11 +49,11 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rJW-cL-nrI">
                                                     <rect key="frame" x="543" y="6" width="51" height="31"/>
                                                     <connections>
-                                                        <action selector="pullGravitation:" destination="ZIr-xz-wCD" eventType="valueChanged" id="cK9-NJ-Iue"/>
+                                                        <action selector="changePaddingState:" destination="ZIr-xz-wCD" eventType="valueChanged" id="vEd-Tl-tq3"/>
                                                     </connections>
                                                 </switch>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grativation pull" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1t-m9-NxW">
-                                                    <rect key="frame" x="8" y="11" width="116" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Normal Padding" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1t-m9-NxW">
+                                                    <rect key="frame" x="8" y="11" width="125" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -168,7 +168,7 @@
                         <outlet property="bouncinessSlider" destination="rRS-Nt-2Lf" id="h3j-4S-n4h"/>
                         <outlet property="bouncingBallsSegments" destination="Owp-6T-1wz" id="fQg-O1-a7e"/>
                         <outlet property="brickRowLabel" destination="bkf-xW-fSL" id="tMG-4c-cbO"/>
-                        <outlet property="grativationPullSwitch" destination="rJW-cL-nrI" id="dGo-KJ-BX1"/>
+                        <outlet property="paddingStateSwitch" destination="rJW-cL-nrI" id="Uaj-zi-8IL"/>
                         <outlet property="rowOfBricksStepper" destination="vhe-3j-aaf" id="kxI-Fe-ibk"/>
                     </connections>
                 </tableViewController>

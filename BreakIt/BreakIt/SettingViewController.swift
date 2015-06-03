@@ -12,14 +12,14 @@ class SettingViewController: UITableViewController {
     
     // MARK: IBoutlets
     @IBOutlet weak var brickRowLabel: UILabel!
-    @IBOutlet weak var grativationPullSwitch: UISwitch!
+    @IBOutlet weak var paddingStateSwitch: UISwitch!
     @IBOutlet weak var rowOfBricksStepper: UIStepper!
     @IBOutlet weak var bouncingBallsSegments: UISegmentedControl!
     @IBOutlet weak var bouncinessSlider: UISlider!
     
     // MARK: Keys for the user settings
     struct BreakItGameUserDefaultsKey {
-        static let PullGravitationKey = "BraekItGamePullGravitation"
+        static let PaddingStateKey = "BraekItGamePaddingState"
         static let RowOfBricksKey = "BraekItGameRowOfBricks"
         static let NumberOfBouncingBallsKey = "BraekItGamePullNumberOfBouncingBalls"
         static let BouncinessKey = "BraekItGamePullBounciness"
@@ -29,11 +29,11 @@ class SettingViewController: UITableViewController {
     // MARK: propertes for setting parameters
     var isEdited: Bool?
     
-    var isGravitationPulled: Bool? {
+    var isPaddingNormalState: Bool? {
         didSet {
-            if let isPulled = self.isGravitationPulled
+            if let isNormal = self.isPaddingNormalState
             {
-                grativationPullSwitch.selected = isPulled
+                paddingStateSwitch.selected = isNormal
             }
         }
     }
@@ -69,8 +69,8 @@ class SettingViewController: UITableViewController {
     }
     
     // MARK: linsteners of the UIController
-    @IBAction func pullGravitation(sender: UISwitch) {
-        isGravitationPulled = sender.selected
+    @IBAction func changePaddingState(sender: UISwitch) {
+        isPaddingNormalState = sender.on
         isEdited = true
     }
     
@@ -93,7 +93,7 @@ class SettingViewController: UITableViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         let defaults = NSUserDefaults.standardUserDefaults()
-        isGravitationPulled = defaults.boolForKey(BreakItGameUserDefaultsKey.PullGravitationKey)
+        isPaddingNormalState = defaults.boolForKey(BreakItGameUserDefaultsKey.PaddingStateKey)
         rowOfBricks = defaults.integerForKey(BreakItGameUserDefaultsKey.RowOfBricksKey)
         numberOfBouncingBalls = defaults.integerForKey(BreakItGameUserDefaultsKey.NumberOfBouncingBallsKey)
         bouciness = defaults.doubleForKey(BreakItGameUserDefaultsKey.BouncinessKey)
@@ -106,7 +106,7 @@ class SettingViewController: UITableViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setBool(isGravitationPulled!, forKey: BreakItGameUserDefaultsKey.PullGravitationKey)
+        defaults.setBool(isPaddingNormalState!, forKey: BreakItGameUserDefaultsKey.PaddingStateKey)
         defaults.setInteger(rowOfBricks!, forKey: BreakItGameUserDefaultsKey.RowOfBricksKey)
         defaults.setInteger(numberOfBouncingBalls!, forKey: BreakItGameUserDefaultsKey.NumberOfBouncingBallsKey)
         defaults.setDouble(bouciness!, forKey: BreakItGameUserDefaultsKey.BouncinessKey)
