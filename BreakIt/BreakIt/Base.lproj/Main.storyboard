@@ -5,25 +5,6 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--More View Controller-->
-        <scene sceneID="sQE-5T-VKI">
-            <objects>
-                <viewController id="28l-WN-yXY" customClass="MoreViewController" customModule="BreakIt" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="lTu-zT-1xM"/>
-                        <viewControllerLayoutGuide type="bottom" id="T7s-0t-m3O"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="fjU-hu-aAo">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" systemItem="more" id="MxE-4B-JnE"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0Te-Mn-ddE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="530" y="1007"/>
-        </scene>
         <!--Setting-->
         <scene sceneID="PcF-Xb-eU0">
             <objects>
@@ -52,8 +33,8 @@
                                                         <action selector="changePaddingState:" destination="ZIr-xz-wCD" eventType="valueChanged" id="vEd-Tl-tq3"/>
                                                     </connections>
                                                 </switch>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Normal Padding" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1t-m9-NxW">
-                                                    <rect key="frame" x="8" y="11" width="125" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Special Padding" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1t-m9-NxW">
+                                                    <rect key="frame" x="8" y="11" width="126" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -176,6 +157,82 @@
             </objects>
             <point key="canvasLocation" x="504" y="196"/>
         </scene>
+        <!--Score Table View Controller-->
+        <scene sceneID="ez8-sP-u7V">
+            <objects>
+                <tableViewController id="JaP-m9-aQU" customClass="ScoreTableViewController" customModule="BreakIt" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="vyv-bY-T9y">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="scoreCell" id="JKJ-Qo-5cW">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JKJ-Qo-5cW" id="bkt-0n-x40">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="JaP-m9-aQU" id="3cA-8C-7F4"/>
+                            <outlet property="delegate" destination="JaP-m9-aQU" id="PnK-Oe-Bxf"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" id="J1z-l7-PCn"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MCa-ou-dmX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="504" y="880"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="ZFj-2v-m8S">
+            <objects>
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="X6a-mS-OBj" customClass="InstructionViewController" customModule="BreakIt" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="LlU-sD-b4Z"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="061-as-Lvu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="509" y="1733"/>
+        </scene>
+        <!--Instruction Content View Controller-->
+        <scene sceneID="Bjg-CU-8Fp">
+            <objects>
+                <viewController storyboardIdentifier="PageContentViewController" id="mdq-Ub-7Fw" customClass="InstructionContentViewController" customModule="BreakIt" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iLd-ze-QHb"/>
+                        <viewControllerLayoutGuide type="bottom" id="a7y-jX-Ir3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YkG-RN-7Da">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6mz-xA-pPp">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Instruction" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vJG-5A-ifh">
+                                <rect key="frame" x="236" y="28" width="129" height="41"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="30"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6mz-xA-pPp" firstAttribute="leading" secondItem="YkG-RN-7Da" secondAttribute="leading" id="JIL-Z2-2xZ"/>
+                            <constraint firstItem="6mz-xA-pPp" firstAttribute="bottom" secondItem="a7y-jX-Ir3" secondAttribute="top" id="myY-zb-fMP"/>
+                            <constraint firstItem="6mz-xA-pPp" firstAttribute="top" secondItem="YkG-RN-7Da" secondAttribute="top" id="pFU-78-vKy"/>
+                            <constraint firstAttribute="trailing" secondItem="6mz-xA-pPp" secondAttribute="trailing" id="xhZ-0a-gBs"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="6mz-xA-pPp" id="lpQ-gX-v0l"/>
+                        <outlet property="nameLabel" destination="vJG-5A-ifh" id="4DB-nv-Y96"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BDL-5k-lpg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1146" y="1733"/>
+        </scene>
         <!--Break It View Controller-->
         <scene sceneID="OY9-YI-GQa">
             <objects>
@@ -251,12 +308,13 @@
                     <connections>
                         <segue destination="f4y-e8-wxE" kind="relationship" relationship="viewControllers" id="jtb-if-fYa"/>
                         <segue destination="ZIr-xz-wCD" kind="relationship" relationship="viewControllers" id="e0K-NA-979"/>
-                        <segue destination="28l-WN-yXY" kind="relationship" relationship="viewControllers" id="yuJ-yS-44q"/>
+                        <segue destination="JaP-m9-aQU" kind="relationship" relationship="viewControllers" id="aeE-cM-63d"/>
+                        <segue destination="X6a-mS-OBj" kind="relationship" relationship="viewControllers" id="9Yz-LN-bM9"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1rS-2X-fmY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-307" y="-158"/>
+            <point key="canvasLocation" x="-535" y="490"/>
         </scene>
     </scenes>
     <resources>

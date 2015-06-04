@@ -8,6 +8,6 @@
 
 import UIKit
 
-class MoreViewController: UIViewController {
-
+class ScoreTableViewController: UITableViewController, UITableViewDelegate, UITableViewDataSource {
+    
 }
