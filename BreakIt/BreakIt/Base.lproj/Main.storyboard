@@ -157,7 +157,7 @@
             </objects>
             <point key="canvasLocation" x="504" y="196"/>
         </scene>
-        <!--Score Table View Controller-->
+        <!--Record-->
         <scene sceneID="ez8-sP-u7V">
             <objects>
                 <tableViewController id="JaP-m9-aQU" customClass="ScoreTableViewController" customModule="BreakIt" customModuleProvider="target" sceneMemberID="viewController">
@@ -178,17 +178,17 @@
                             <outlet property="delegate" destination="JaP-m9-aQU" id="PnK-Oe-Bxf"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" id="J1z-l7-PCn"/>
+                    <tabBarItem key="tabBarItem" title="Record" id="J1z-l7-PCn"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MCa-ou-dmX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="504" y="880"/>
         </scene>
-        <!--Item-->
+        <!--Instruction-->
         <scene sceneID="ZFj-2v-m8S">
             <objects>
                 <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="X6a-mS-OBj" customClass="InstructionViewController" customModule="BreakIt" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="LlU-sD-b4Z"/>
+                    <tabBarItem key="tabBarItem" title="Instruction" id="LlU-sD-b4Z"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="061-as-Lvu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -206,11 +206,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6mz-xA-pPp">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6mz-xA-pPp">
+                                <rect key="frame" x="0.0" y="16" width="600" height="568"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Instruction" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vJG-5A-ifh">
-                                <rect key="frame" x="236" y="28" width="129" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Instruction" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vJG-5A-ifh">
+                                <rect key="frame" x="233" y="16" width="135" height="36"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="30"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -218,10 +218,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6mz-xA-pPp" firstAttribute="leading" secondItem="YkG-RN-7Da" secondAttribute="leading" id="JIL-Z2-2xZ"/>
-                            <constraint firstItem="6mz-xA-pPp" firstAttribute="bottom" secondItem="a7y-jX-Ir3" secondAttribute="top" id="myY-zb-fMP"/>
-                            <constraint firstItem="6mz-xA-pPp" firstAttribute="top" secondItem="YkG-RN-7Da" secondAttribute="top" id="pFU-78-vKy"/>
-                            <constraint firstAttribute="trailing" secondItem="6mz-xA-pPp" secondAttribute="trailing" id="xhZ-0a-gBs"/>
+                            <constraint firstItem="vJG-5A-ifh" firstAttribute="top" secondItem="6mz-xA-pPp" secondAttribute="top" id="691-Hi-XVM"/>
+                            <constraint firstAttribute="centerX" secondItem="vJG-5A-ifh" secondAttribute="centerX" id="Igu-JS-T3P"/>
+                            <constraint firstItem="6mz-xA-pPp" firstAttribute="width" secondItem="YkG-RN-7Da" secondAttribute="width" id="JFe-iS-reg"/>
+                            <constraint firstAttribute="centerY" secondItem="6mz-xA-pPp" secondAttribute="centerY" id="Sbv-eq-5pB"/>
+                            <constraint firstItem="6mz-xA-pPp" firstAttribute="height" secondItem="YkG-RN-7Da" secondAttribute="height" id="VlK-0R-uM5"/>
+                            <constraint firstAttribute="centerX" secondItem="6mz-xA-pPp" secondAttribute="centerX" id="z63-vt-Icp"/>
                         </constraints>
                     </view>
                     <connections>
