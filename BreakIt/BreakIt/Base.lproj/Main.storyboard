@@ -206,24 +206,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6mz-xA-pPp">
-                                <rect key="frame" x="0.0" y="16" width="600" height="568"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6mz-xA-pPp">
+                                <rect key="frame" x="76" y="80" width="448" height="440"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Instruction" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vJG-5A-ifh">
-                                <rect key="frame" x="233" y="16" width="135" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instruction" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vJG-5A-ifh">
+                                <rect key="frame" x="233" y="80" width="135" height="36"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="30"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.2901960784" green="0.6705882353" blue="0.96862745100000003" alpha="0.26000000000000001" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="vJG-5A-ifh" firstAttribute="top" secondItem="6mz-xA-pPp" secondAttribute="top" id="691-Hi-XVM"/>
                             <constraint firstAttribute="centerX" secondItem="vJG-5A-ifh" secondAttribute="centerX" id="Igu-JS-T3P"/>
-                            <constraint firstItem="6mz-xA-pPp" firstAttribute="width" secondItem="YkG-RN-7Da" secondAttribute="width" id="JFe-iS-reg"/>
-                            <constraint firstAttribute="centerY" secondItem="6mz-xA-pPp" secondAttribute="centerY" id="Sbv-eq-5pB"/>
-                            <constraint firstItem="6mz-xA-pPp" firstAttribute="height" secondItem="YkG-RN-7Da" secondAttribute="height" id="VlK-0R-uM5"/>
-                            <constraint firstAttribute="centerX" secondItem="6mz-xA-pPp" secondAttribute="centerX" id="z63-vt-Icp"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="6mz-xA-pPp" secondAttribute="bottom" constant="80" id="UK7-c6-R8Q"/>
+                            <constraint firstItem="6mz-xA-pPp" firstAttribute="top" secondItem="YkG-RN-7Da" secondAttribute="topMargin" constant="80" id="g1A-IX-1D6"/>
+                            <constraint firstItem="6mz-xA-pPp" firstAttribute="leading" secondItem="YkG-RN-7Da" secondAttribute="leadingMargin" constant="60" id="nD0-eo-NZO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6mz-xA-pPp" secondAttribute="trailing" constant="60" id="tqv-zi-03h"/>
                         </constraints>
                     </view>
                     <connections>
@@ -256,12 +256,20 @@
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="center" lineBreakMode="characterWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VaG-SO-64O">
+                                        <rect key="frame" x="504" y="0.0" width="64" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="VaG-SO-64O" secondAttribute="trailing" id="BsK-Yu-2HB"/>
                                     <constraint firstAttribute="centerX" secondItem="O68-iH-Y2Q" secondAttribute="centerX" id="J4j-9e-Mul"/>
                                     <constraint firstAttribute="centerY" secondItem="O68-iH-Y2Q" secondAttribute="centerY" id="drp-Ro-SdH"/>
+                                    <constraint firstItem="VaG-SO-64O" firstAttribute="top" secondItem="yFs-Ht-joI" secondAttribute="top" id="n4F-a5-TIV"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="qem-h9-NlT" appends="YES" id="tWn-Y8-r0q"/>
@@ -281,6 +289,7 @@
                     <connections>
                         <outlet property="gameView" destination="yFs-Ht-joI" id="i9J-N6-rvc"/>
                         <outlet property="hintLabel" destination="O68-iH-Y2Q" id="ico-bV-uec"/>
+                        <outlet property="scoreLabel" destination="VaG-SO-64O" id="nJ6-V2-64K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f9m-t6-bTB" userLabel="First Responder" sceneMemberID="firstResponder"/>

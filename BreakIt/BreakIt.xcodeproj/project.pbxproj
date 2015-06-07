@@ -152,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				2F7EFD6C1B0250C200C3BAE0 /* Main.storyboard */,
+				2F7EFD681B0250C200C3BAE0 /* AppDelegate.swift */,
 				2F29D6721B1EFB8A008C862A /* game */,
 				2F29D6741B1EFBCE008C862A /* setting */,
 				2F29D6751B1EFBD7008C862A /* score list */,
@@ -169,7 +170,6 @@
 				2F152E351B13644C00F214E1 /* InfoPlist.strings */,
 				2F7EFD711B0250C200C3BAE0 /* LaunchScreen.xib */,
 				2F7EFD6F1B0250C200C3BAE0 /* Images.xcassets */,
-				2F7EFD681B0250C200C3BAE0 /* AppDelegate.swift */,
 				2F7EFD671B0250C200C3BAE0 /* Info.plist */,
 			);
 			name = "Supporting Files";

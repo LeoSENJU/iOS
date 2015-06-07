@@ -14,6 +14,15 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     
     @IBOutlet weak var hintLabel: UILabel!
     
+    @IBOutlet weak var scoreLabel: UILabel!
+    
+    var score: Int = 0 {
+        didSet {
+            let text = NSLocalizedString("Score: %d", comment: "score label")
+            scoreLabel.text = String.localizedStringWithFormat(text, score)
+        }
+    }
+    
     // MARK: static constants for break it game
     struct ConstantsForBreakItGame {
         static let BrickCollisionNotification = "BreakItGameBrickCollision"
@@ -84,6 +93,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     // start break it game using the user defaults
     func startGame()
     {
+        score = 0
         gameView.superview?.backgroundColor = UIColor.whiteColor()
         
         hintLabel.hidden = true
@@ -467,11 +477,13 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
                 
                 breakItBehavior.removeBrick(name)
                 let brick = brickViews.removeAtIndex(i) as Brick
+                score += balls.count
                 
                 if brick.type != 0 {
                     
                     // special brick type 1, add balls
                     if brick.type == 1 {
+                        score += 1
                         addSpecialBall(collideBallName)
                     }
                     
@@ -502,6 +514,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
             }
             
             isGameOver = true
+            score *= 2
         }
     }
     
