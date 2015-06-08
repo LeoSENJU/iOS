@@ -157,7 +157,7 @@
             </objects>
             <point key="canvasLocation" x="504" y="196"/>
         </scene>
-        <!--Record-->
+        <!--Rank-->
         <scene sceneID="ez8-sP-u7V">
             <objects>
                 <tableViewController id="JaP-m9-aQU" customClass="ScoreTableViewController" customModule="BreakIt" customModuleProvider="target" sceneMemberID="viewController">
@@ -178,7 +178,7 @@
                             <outlet property="delegate" destination="JaP-m9-aQU" id="PnK-Oe-Bxf"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Record" id="J1z-l7-PCn"/>
+                    <tabBarItem key="tabBarItem" title="Rank" id="J1z-l7-PCn"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MCa-ou-dmX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

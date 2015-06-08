@@ -25,6 +25,8 @@
 		2F7EFD911B039BBF00C3BAE0 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7EFD901B039BBF00C3BAE0 /* SettingViewController.swift */; };
 		2F7EFD931B039C2100C3BAE0 /* ScoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7EFD921B039C2100C3BAE0 /* ScoreTableViewController.swift */; };
 		2F9904DB1B1EE28E004E9988 /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9904DA1B1EE28E004E9988 /* InstructionViewController.swift */; };
+		2FA7B38A1B249D3A00DFE192 /* BreakItDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B3881B249D3A00DFE192 /* BreakItDataModel.xcdatamodeld */; };
+		2FA7B38D1B24A19200DFE192 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B38C1B24A19200DFE192 /* Score.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		2F7EFD901B039BBF00C3BAE0 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		2F7EFD921B039C2100C3BAE0 /* ScoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreTableViewController.swift; sourceTree = "<group>"; };
 		2F9904DA1B1EE28E004E9988 /* InstructionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
+		2FA7B3891B249D3A00DFE192 /* BreakItDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BreakItDataModel.xcdatamodel; sourceTree = "<group>"; };
+		2FA7B38C1B24A19200DFE192 /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Score.swift; path = BreakIt/Score.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,8 +155,9 @@
 		2F7EFD651B0250C200C3BAE0 /* BreakIt */ = {
 			isa = PBXGroup;
 			children = (
-				2F7EFD6C1B0250C200C3BAE0 /* Main.storyboard */,
 				2F7EFD681B0250C200C3BAE0 /* AppDelegate.swift */,
+				2F7EFD6C1B0250C200C3BAE0 /* Main.storyboard */,
+				2FA7B38B1B249D4000DFE192 /* DataLayer */,
 				2F29D6721B1EFB8A008C862A /* game */,
 				2F29D6741B1EFBCE008C862A /* setting */,
 				2F29D6751B1EFBD7008C862A /* score list */,
@@ -191,6 +196,16 @@
 				2F7EFD7D1B0250C200C3BAE0 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2FA7B38B1B249D4000DFE192 /* DataLayer */ = {
+			isa = PBXGroup;
+			children = (
+				2FA7B38C1B24A19200DFE192 /* Score.swift */,
+				2FA7B3881B249D3A00DFE192 /* BreakItDataModel.xcdatamodeld */,
+			);
+			name = DataLayer;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,9 +315,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FA7B38A1B249D3A00DFE192 /* BreakItDataModel.xcdatamodeld in Sources */,
 				2F7EFD911B039BBF00C3BAE0 /* SettingViewController.swift in Sources */,
 				2F7EFD8F1B038F1000C3BAE0 /* BezierPathsView.swift in Sources */,
 				2F9904DB1B1EE28E004E9988 /* InstructionViewController.swift in Sources */,
+				2FA7B38D1B24A19200DFE192 /* Score.swift in Sources */,
 				2F7EFD691B0250C200C3BAE0 /* AppDelegate.swift in Sources */,
 				2F7EFD931B039C2100C3BAE0 /* ScoreTableViewController.swift in Sources */,
 				2F29D6711B1EF954008C862A /* InstructionContentViewController.swift in Sources */,
@@ -570,6 +587,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2FA7B3881B249D3A00DFE192 /* BreakItDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2FA7B3891B249D3A00DFE192 /* BreakItDataModel.xcdatamodel */,
+			);
+			currentVersion = 2FA7B3891B249D3A00DFE192 /* BreakItDataModel.xcdatamodel */;
+			path = BreakItDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2F7EFD5B1B0250C200C3BAE0 /* Project object */;
 }
