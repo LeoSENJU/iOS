@@ -158,31 +158,64 @@
             <point key="canvasLocation" x="504" y="196"/>
         </scene>
         <!--Rank-->
-        <scene sceneID="ez8-sP-u7V">
+        <scene sceneID="QoT-Pg-Osh">
             <objects>
-                <tableViewController id="JaP-m9-aQU" customClass="ScoreTableViewController" customModule="BreakIt" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="vyv-bY-T9y">
+                <viewController id="YY5-DB-JuB" customClass="ScoreViewController" customModule="BreakIt" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hOX-Tk-4xd"/>
+                        <viewControllerLayoutGuide type="bottom" id="EkY-xg-Ww8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="c26-38-m6G">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="qvP-Xh-l2f">
+                                <rect key="frame" x="32" y="16" width="536" height="519"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="score cell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="score cell" id="N69-Lc-u1d" customClass="ScoreTableViewCell" customModule="BreakIt" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N69-Lc-u1d" id="2bw-Hr-nde">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 score date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="S8K-AT-AyC">
+                                                    <rect key="frame" x="38" y="11" width="252" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="252" id="n25-IK-2Qa"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="S8K-AT-AyC" firstAttribute="centerY" secondItem="2bw-Hr-nde" secondAttribute="centerY" id="JR5-wX-vSH"/>
+                                                <constraint firstItem="S8K-AT-AyC" firstAttribute="leading" secondItem="2bw-Hr-nde" secondAttribute="leadingMargin" constant="30" id="nNz-hJ-83g"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="rankLabel" destination="S8K-AT-AyC" id="Skb-uR-a4o"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="scoreCell" id="JKJ-Qo-5cW">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JKJ-Qo-5cW" id="bkt-0n-x40">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="JaP-m9-aQU" id="3cA-8C-7F4"/>
-                            <outlet property="delegate" destination="JaP-m9-aQU" id="PnK-Oe-Bxf"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Rank" id="J1z-l7-PCn"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MCa-ou-dmX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <constraints>
+                            <constraint firstItem="qvP-Xh-l2f" firstAttribute="top" secondItem="c26-38-m6G" secondAttribute="topMargin" constant="16" id="5s7-Oq-24o"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qvP-Xh-l2f" secondAttribute="trailing" constant="16" id="FQO-2O-V5k"/>
+                            <constraint firstItem="EkY-xg-Ww8" firstAttribute="top" secondItem="qvP-Xh-l2f" secondAttribute="bottom" constant="16" id="OUa-NW-hkv"/>
+                            <constraint firstItem="qvP-Xh-l2f" firstAttribute="leading" secondItem="c26-38-m6G" secondAttribute="leadingMargin" constant="16" id="zZY-zy-moK"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Rank" id="hXw-hH-cWn"/>
+                    <connections>
+                        <outlet property="scoreTableView" destination="qvP-Xh-l2f" id="Jce-qp-1bY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y4a-1i-tdX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="504" y="880"/>
+            <point key="canvasLocation" x="484" y="863"/>
         </scene>
         <!--Instruction-->
         <scene sceneID="ZFj-2v-m8S">
@@ -319,7 +352,7 @@
                     <connections>
                         <segue destination="f4y-e8-wxE" kind="relationship" relationship="viewControllers" id="jtb-if-fYa"/>
                         <segue destination="ZIr-xz-wCD" kind="relationship" relationship="viewControllers" id="e0K-NA-979"/>
-                        <segue destination="JaP-m9-aQU" kind="relationship" relationship="viewControllers" id="aeE-cM-63d"/>
+                        <segue destination="YY5-DB-JuB" kind="relationship" relationship="viewControllers" id="M1Y-0H-oSq"/>
                         <segue destination="X6a-mS-OBj" kind="relationship" relationship="viewControllers" id="9Yz-LN-bM9"/>
                     </connections>
                 </tabBarController>

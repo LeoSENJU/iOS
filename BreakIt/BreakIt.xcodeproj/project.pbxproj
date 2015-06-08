@@ -23,10 +23,12 @@
 		2F7EFD8D1B038EC200C3BAE0 /* BreakItBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7EFD8C1B038EC200C3BAE0 /* BreakItBehavior.swift */; };
 		2F7EFD8F1B038F1000C3BAE0 /* BezierPathsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7EFD8E1B038F1000C3BAE0 /* BezierPathsView.swift */; };
 		2F7EFD911B039BBF00C3BAE0 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7EFD901B039BBF00C3BAE0 /* SettingViewController.swift */; };
-		2F7EFD931B039C2100C3BAE0 /* ScoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7EFD921B039C2100C3BAE0 /* ScoreTableViewController.swift */; };
+		2F7EFD931B039C2100C3BAE0 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7EFD921B039C2100C3BAE0 /* ScoreViewController.swift */; };
 		2F9904DB1B1EE28E004E9988 /* InstructionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9904DA1B1EE28E004E9988 /* InstructionViewController.swift */; };
 		2FA7B38A1B249D3A00DFE192 /* BreakItDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B3881B249D3A00DFE192 /* BreakItDataModel.xcdatamodeld */; };
 		2FA7B38D1B24A19200DFE192 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B38C1B24A19200DFE192 /* Score.swift */; };
+		2FA7B3901B256DF300DFE192 /* Score Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B38F1B256DF300DFE192 /* Score Extension.swift */; };
+		2FA7B3921B25789F00DFE192 /* ScoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA7B3911B25789F00DFE192 /* ScoreTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,10 +67,12 @@
 		2F7EFD8C1B038EC200C3BAE0 /* BreakItBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakItBehavior.swift; sourceTree = "<group>"; };
 		2F7EFD8E1B038F1000C3BAE0 /* BezierPathsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierPathsView.swift; sourceTree = "<group>"; };
 		2F7EFD901B039BBF00C3BAE0 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		2F7EFD921B039C2100C3BAE0 /* ScoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreTableViewController.swift; sourceTree = "<group>"; };
+		2F7EFD921B039C2100C3BAE0 /* ScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
 		2F9904DA1B1EE28E004E9988 /* InstructionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionViewController.swift; sourceTree = "<group>"; };
 		2FA7B3891B249D3A00DFE192 /* BreakItDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BreakItDataModel.xcdatamodel; sourceTree = "<group>"; };
 		2FA7B38C1B24A19200DFE192 /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Score.swift; path = BreakIt/Score.swift; sourceTree = "<group>"; };
+		2FA7B38F1B256DF300DFE192 /* Score Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Score Extension.swift"; path = "BreakIt/Score Extension.swift"; sourceTree = "<group>"; };
+		2FA7B3911B25789F00DFE192 /* ScoreTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +123,8 @@
 		2F29D6751B1EFBD7008C862A /* score list */ = {
 			isa = PBXGroup;
 			children = (
-				2F7EFD921B039C2100C3BAE0 /* ScoreTableViewController.swift */,
+				2F7EFD921B039C2100C3BAE0 /* ScoreViewController.swift */,
+				2FA7B3911B25789F00DFE192 /* ScoreTableViewCell.swift */,
 			);
 			name = "score list";
 			sourceTree = "<group>";
@@ -202,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				2FA7B38C1B24A19200DFE192 /* Score.swift */,
+				2FA7B38F1B256DF300DFE192 /* Score Extension.swift */,
 				2FA7B3881B249D3A00DFE192 /* BreakItDataModel.xcdatamodeld */,
 			);
 			name = DataLayer;
@@ -321,9 +327,11 @@
 				2F9904DB1B1EE28E004E9988 /* InstructionViewController.swift in Sources */,
 				2FA7B38D1B24A19200DFE192 /* Score.swift in Sources */,
 				2F7EFD691B0250C200C3BAE0 /* AppDelegate.swift in Sources */,
-				2F7EFD931B039C2100C3BAE0 /* ScoreTableViewController.swift in Sources */,
+				2FA7B3901B256DF300DFE192 /* Score Extension.swift in Sources */,
+				2F7EFD931B039C2100C3BAE0 /* ScoreViewController.swift in Sources */,
 				2F29D6711B1EF954008C862A /* InstructionContentViewController.swift in Sources */,
 				2F7EFD891B02516F00C3BAE0 /* BreakItViewController.swift in Sources */,
+				2FA7B3921B25789F00DFE192 /* ScoreTableViewCell.swift in Sources */,
 				2F7EFD8D1B038EC200C3BAE0 /* BreakItBehavior.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,6 +16,8 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     
     @IBOutlet weak var scoreLabel: UILabel!
     
+    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    
     var score: Int = 0 {
         didSet {
             let text = NSLocalizedString("Score: %d", comment: "score label")
@@ -68,7 +70,15 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     private var brickCollsionObserver: NSObjectProtocol?
     private var ballHitBottomObserver: NSObjectProtocol?
     
-    var isGameOver: Bool = false
+    var isGameOver: Bool = false {
+        didSet{
+            if self.isGameOver {
+                println(score)
+                Score.createInManagedObjectContext(self.managedObjectContext!, id: NSDate(), value: self.score)
+            }
+        }
+    }
+    
     var isGamePause: Bool = false {
         didSet {
             if self.isGamePause && !isGameOver {
@@ -84,7 +94,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         gameView.backgroundColor = UIColor.clearColor()
         animator.addBehavior(breakItBehavior)
         
-        startCollisionEvenObserver()
+        startCollisionEventObserver()
         
         startGame()
     }
@@ -114,6 +124,15 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         }
         
         var bounciness = defaults.doubleForKey(SettingViewController.BreakItGameUserDefaultsKey.BouncinessKey)
+        
+        if bounciness < 1.0 {
+            bounciness = 1.0
+            defaults.setDouble(bounciness, forKey: SettingViewController.BreakItGameUserDefaultsKey.BouncinessKey)
+        } else if bounciness > 1.1 {
+            bounciness = 1.1
+            defaults.setDouble(bounciness, forKey: SettingViewController.BreakItGameUserDefaultsKey.BouncinessKey)
+        }
+        
         breakItBehavior.setBounciness(bounciness)
         
         isPaddingOvel = defaults.boolForKey(SettingViewController.BreakItGameUserDefaultsKey.PaddingStateKey)
@@ -432,12 +451,13 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         }
         
         isGamePause = true
+        //Score.saveContext(self.managedObjectContext!)
     }
     
     // MARK: handle collision events
     var collidePoint: CGPoint = CGPointZero
     
-    func startCollisionEvenObserver()
+    func startCollisionEventObserver()
     {
         let center = NSNotificationCenter.defaultCenter()
         let queue = NSOperationQueue.mainQueue()
@@ -513,8 +533,8 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
                 breakItBehavior.clearLinearVelocityForBall(ball.view)
             }
             
-            isGameOver = true
             score *= 2
+            isGameOver = true
         }
     }
     

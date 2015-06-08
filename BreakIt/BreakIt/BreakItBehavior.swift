@@ -119,7 +119,6 @@ class BreakItBehavior: UIDynamicBehavior, UICollisionBehaviorDelegate {
     
     // MARK: manage collision behavior between ball/bricks and ball/boundaries
     func collisionBehavior(behavior: UICollisionBehavior, beganContactForItem item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying, atPoint p: CGPoint) {
-        //println(identifier)
         let identifieropt: NSCopying? = identifier
         if let name = identifieropt as? String {
             
