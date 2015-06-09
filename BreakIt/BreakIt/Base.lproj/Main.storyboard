@@ -208,7 +208,7 @@
                             <constraint firstItem="qvP-Xh-l2f" firstAttribute="leading" secondItem="c26-38-m6G" secondAttribute="leadingMargin" constant="16" id="zZY-zy-moK"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Rank" id="hXw-hH-cWn"/>
+                    <tabBarItem key="tabBarItem" title="Rank" image="rank" id="hXw-hH-cWn"/>
                     <connections>
                         <outlet property="scoreTableView" destination="qvP-Xh-l2f" id="Jce-qp-1bY"/>
                     </connections>
@@ -221,7 +221,7 @@
         <scene sceneID="ZFj-2v-m8S">
             <objects>
                 <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="X6a-mS-OBj" customClass="InstructionViewController" customModule="BreakIt" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Instruction" id="LlU-sD-b4Z"/>
+                    <tabBarItem key="tabBarItem" title="Instruction" image="info" id="LlU-sD-b4Z"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="061-as-Lvu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -268,7 +268,7 @@
             </objects>
             <point key="canvasLocation" x="1146" y="1733"/>
         </scene>
-        <!--Break It View Controller-->
+        <!--Game-->
         <scene sceneID="OY9-YI-GQa">
             <objects>
                 <viewController id="f4y-e8-wxE" customClass="BreakItViewController" customModule="BreakIt" customModuleProvider="target" sceneMemberID="viewController">
@@ -318,7 +318,7 @@
                             <constraint firstItem="yFs-Ht-joI" firstAttribute="leading" secondItem="3SJ-aO-84b" secondAttribute="leadingMargin" id="kU4-d0-tQ5"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="featured" id="Rrk-W9-7ro"/>
+                    <tabBarItem key="tabBarItem" title="Game" image="game" id="Rrk-W9-7ro"/>
                     <connections>
                         <outlet property="gameView" destination="yFs-Ht-joI" id="i9J-N6-rvc"/>
                         <outlet property="hintLabel" destination="O68-iH-Y2Q" id="ico-bV-uec"/>
@@ -362,6 +362,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="game" width="25" height="25"/>
+        <image name="info" width="25" height="25"/>
+        <image name="rank" width="25" height="25"/>
         <image name="setting" width="25" height="25"/>
     </resources>
 </document>
