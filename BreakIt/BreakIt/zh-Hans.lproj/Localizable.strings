@@ -1,3 +1,6 @@
+/* rank */
+"#%d    %d" = "#%1$d    %2$d";
+
 /* title of cancle button in restart alert controller */
 "Cancle" = "取消";
 
@@ -18,6 +21,9 @@
 
 /* row of bricks in the label */
 "Row of Bricks: %d" = "砖块行数：%d";
+
+/* score label */
+"Score: %d" = "得分 %d";
 
 /* context of restart game alert controller */
 "Your game setting has been changed, want to restart game now?" = "游戏设置已经修改，重新开始游戏？";
