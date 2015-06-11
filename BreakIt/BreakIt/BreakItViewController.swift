@@ -73,7 +73,6 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     var isGameOver: Bool = false {
         didSet{
             if self.isGameOver {
-                println(score)
                 Score.createInManagedObjectContext(self.managedObjectContext!, id: NSDate(), value: self.score)
             }
         }
@@ -97,6 +96,9 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         startCollisionEventObserver()
         
         startGame()
+        
+        pauseGame()
+        self.hintLabel.text = NSLocalizedString("Start Game", comment: "Start game")
     }
     
     // MARK: restart game using the user default settings
@@ -395,7 +397,7 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         let blank = brickBlank
         
         for brick in brickViews {
-            let brickRect = CGRect(origin: CGPoint(x: CGFloat(brick.column)*blank.width + CGFloat(brick.column-1)*size.width, y: CGFloat(brick.row)*blank.height + CGFloat(brick.row-1)*size.height), size: size)
+            let brickRect = CGRect(origin: CGPoint(x: CGFloat(brick.column)*blank.width + CGFloat(brick.column-1)*size.width, y: CGFloat(brick.row)*blank.height + CGFloat(brick.row-1)*size.height + ConstantsForBreakItGame.BlankHeight), size: size)
             
             brick.view.frame = brickRect
             gameView.addSubview(brick.view)
@@ -438,6 +440,10 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated);
         
+        pauseGame()
+    }
+    
+    func pauseGame(){
         if !isGamePause {
             for ball in balls {
                 ball.velocity = breakItBehavior.clearLinearVelocityForBall(ball.view)
@@ -451,7 +457,6 @@ class BreakItViewController: UIViewController, UIDynamicAnimatorDelegate {
         }
         
         isGamePause = true
-        //Score.saveContext(self.managedObjectContext!)
     }
     
     // MARK: handle collision events

@@ -25,6 +25,9 @@
 /* score label */
 "Score: %d" = "得分 %d";
 
+/* Start game */
+"Start Game" = "开始游戏";
+
 /* context of restart game alert controller */
 "Your game setting has been changed, want to restart game now?" = "游戏设置已经修改，重新开始游戏？";
 

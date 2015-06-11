@@ -170,7 +170,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="qvP-Xh-l2f">
-                                <rect key="frame" x="32" y="16" width="536" height="519"/>
+                                <rect key="frame" x="32" y="170" width="536" height="365"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="score cell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="score cell" id="N69-Lc-u1d" customClass="ScoreTableViewCell" customModule="BreakIt" customModuleProvider="target">
@@ -179,18 +179,15 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#1 score date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="S8K-AT-AyC">
-                                                    <rect key="frame" x="38" y="11" width="252" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="252" id="n25-IK-2Qa"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="216" y="11" width="105" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="S8K-AT-AyC" firstAttribute="centerY" secondItem="2bw-Hr-nde" secondAttribute="centerY" id="JR5-wX-vSH"/>
-                                                <constraint firstItem="S8K-AT-AyC" firstAttribute="leading" secondItem="2bw-Hr-nde" secondAttribute="leadingMargin" constant="30" id="nNz-hJ-83g"/>
+                                                <constraint firstAttribute="centerY" secondItem="S8K-AT-AyC" secondAttribute="centerY" id="7cO-4i-loT"/>
+                                                <constraint firstAttribute="centerX" secondItem="S8K-AT-AyC" secondAttribute="centerX" id="ZeV-uK-AtG"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -199,12 +196,24 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top 10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9aT-0R-bhQ">
+                                <rect key="frame" x="10" y="28" width="580" height="134"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="134" id="ei0-0l-9qr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-LightItalic" family="Helvetica Neue" pointSize="70"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qvP-Xh-l2f" firstAttribute="top" secondItem="c26-38-m6G" secondAttribute="topMargin" constant="16" id="5s7-Oq-24o"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qvP-Xh-l2f" secondAttribute="trailing" constant="16" id="FQO-2O-V5k"/>
+                            <constraint firstAttribute="centerX" secondItem="9aT-0R-bhQ" secondAttribute="centerX" id="JI0-oh-L46"/>
                             <constraint firstItem="EkY-xg-Ww8" firstAttribute="top" secondItem="qvP-Xh-l2f" secondAttribute="bottom" constant="16" id="OUa-NW-hkv"/>
+                            <constraint firstItem="9aT-0R-bhQ" firstAttribute="top" secondItem="qvP-Xh-l2f" secondAttribute="top" constant="-142" id="aOR-sz-53V"/>
+                            <constraint firstItem="9aT-0R-bhQ" firstAttribute="width" secondItem="c26-38-m6G" secondAttribute="width" constant="-20" id="akz-2r-XCG"/>
+                            <constraint firstItem="9aT-0R-bhQ" firstAttribute="top" secondItem="hOX-Tk-4xd" secondAttribute="bottom" constant="8" id="sxz-qE-VIB"/>
                             <constraint firstItem="qvP-Xh-l2f" firstAttribute="leading" secondItem="c26-38-m6G" secondAttribute="leadingMargin" constant="16" id="zZY-zy-moK"/>
                         </constraints>
                     </view>
