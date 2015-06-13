@@ -249,23 +249,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6mz-xA-pPp">
-                                <rect key="frame" x="76" y="80" width="448" height="440"/>
+                                <rect key="frame" x="36" y="80" width="528" height="440"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instruction" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vJG-5A-ifh">
-                                <rect key="frame" x="233" y="80" width="135" height="36"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="30"/>
+                                <rect key="frame" x="220" y="36" width="160" height="46"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="40"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.2901960784" green="0.6705882353" blue="0.96862745100000003" alpha="0.26000000000000001" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.2901960784" green="0.6705882353" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="vJG-5A-ifh" firstAttribute="top" secondItem="6mz-xA-pPp" secondAttribute="top" id="691-Hi-XVM"/>
                             <constraint firstAttribute="centerX" secondItem="vJG-5A-ifh" secondAttribute="centerX" id="Igu-JS-T3P"/>
                             <constraint firstAttribute="bottomMargin" secondItem="6mz-xA-pPp" secondAttribute="bottom" constant="80" id="UK7-c6-R8Q"/>
                             <constraint firstItem="6mz-xA-pPp" firstAttribute="top" secondItem="YkG-RN-7Da" secondAttribute="topMargin" constant="80" id="g1A-IX-1D6"/>
-                            <constraint firstItem="6mz-xA-pPp" firstAttribute="leading" secondItem="YkG-RN-7Da" secondAttribute="leadingMargin" constant="60" id="nD0-eo-NZO"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="6mz-xA-pPp" secondAttribute="trailing" constant="60" id="tqv-zi-03h"/>
+                            <constraint firstItem="6mz-xA-pPp" firstAttribute="leading" secondItem="YkG-RN-7Da" secondAttribute="leadingMargin" constant="20" id="nD0-eo-NZO"/>
+                            <constraint firstItem="vJG-5A-ifh" firstAttribute="top" secondItem="6mz-xA-pPp" secondAttribute="top" constant="-44" id="rcT-bW-tWE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6mz-xA-pPp" secondAttribute="trailing" constant="20" id="tqv-zi-03h"/>
                         </constraints>
                     </view>
                     <connections>

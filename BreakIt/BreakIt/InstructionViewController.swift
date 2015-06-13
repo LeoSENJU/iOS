@@ -10,8 +10,8 @@ import UIKit
 
 class InstructionViewController: UIPageViewController, UIPageViewControllerDataSource {
     
-    let imageNames = ["instruction1.png","instruction2.png","instruction3.png"]
-    let names = ["game view", "pause", "fail"]
+    let imageNames = ["ins1.png", "ins2.png", "ins3.png", "ins4.png", "ins5.png", "ins6.png", "ins7.png", "ins8.png"]
+    let names = [NSLocalizedString("Start", comment: "Start game image"), NSLocalizedString("Resume", comment: "Resume game image"), NSLocalizedString("Success", comment: "Success game image"), NSLocalizedString("Fail", comment: "Failure game image") ,NSLocalizedString("Time delay", comment: "Time delay game image"), NSLocalizedString("Mullti balls", comment: "Multi balls game image"), NSLocalizedString("Setting hint", comment: "Setting hint game image"), NSLocalizedString("Rank list", comment: "Rank list game image")]
     
     override func viewDidLoad() {
         super.viewDidLoad()

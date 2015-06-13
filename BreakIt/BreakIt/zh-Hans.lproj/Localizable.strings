@@ -10,8 +10,17 @@
 /* continue hint of the game after */
 "Continue?" = "继续？";
 
+/* Failure game image */
+"Fail" = "失败";
+
+/* Multi balls game image */
+"Mullti balls" = "增加球";
+
 /* Hint when user ball hit the bootom */
 "Oops!" = "再来一局？";
+
+/* Rank list game image */
+"Rank list" = "排名列表";
 
 /* title of restart button in restart alert controller */
 "Restart" = "重新开始";
@@ -19,14 +28,29 @@
 /* alert title of resrat the game */
 "Restart game" = "重新开始游戏";
 
+/* Resume game image */
+"Resume" = "继续游戏";
+
 /* row of bricks in the label */
 "Row of Bricks: %d" = "砖块行数：%d";
 
 /* score label */
 "Score: %d" = "得分 %d";
 
+/* Setting hint game image */
+"Setting hint" = "设置修改";
+
+/* Start game image */
+"Start" = "开始游戏";
+
 /* Start game */
 "Start Game" = "开始游戏";
+
+/* Success game image */
+"Success" = "成功";
+
+/* Time delay game image */
+"Time delay" = "时间延迟";
 
 /* context of restart game alert controller */
 "Your game setting has been changed, want to restart game now?" = "游戏设置已经修改，重新开始游戏？";

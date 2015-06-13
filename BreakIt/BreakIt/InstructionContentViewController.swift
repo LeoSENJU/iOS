@@ -16,26 +16,15 @@ class InstructionContentViewController: UIViewController {
     
     var index: Int = 0
 
-    var name: String? {
-        didSet {
-            if name != nil && nameLabel != nil {
-                nameLabel.text = name
-            }
-        }
-    }
+    var name: String?
     
-    var image: UIImage? {
-        didSet {
-            if image != nil && imageView != nil{
-                imageView.image = image
-            }
-        }
-    }
+    var image: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameLabel.text = name
+        nameLabel.text = NSLocalizedString(name!, comment: "name of the label in instruction content view controller")
         imageView.image = image
+        imageView.contentMode = UIViewContentMode.ScaleAspectFit
     }
     
 }
