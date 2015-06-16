@@ -10,3 +10,5 @@ Simple game by using the dynamic animation in SWIFT, origin from the hw6, 2014/2
 =====================================================================
 ###ShowDou
 Using update-to-date swift language and online DOUBAN API to implement a presentation APP
+1. test the ability to get and post json type data from httprequest
+=====================================================================
